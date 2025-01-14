@@ -2,23 +2,15 @@
 
 Extended WPF Toolkit™ by [Xceed](https://xceed.com) is the number one collection of WPF controls, components and utilities for creating next generation Windows applications. Use it to build professional looking, modern, and easy to use WPF applications. It has been downloaded more than 1 million times here, on Codeplex, and on [NuGet](http://www.nuget.org/packages/Extended.Wpf.Toolkit/).
 
-Starting at v3.7.0, this free and open source toolkit is provided under the [Xceed Community License agreement](license.md)(for non-commercial use).
+This free and open source toolkit is provided under the [Microsoft Public License](https://opensource.org/licenses/MS-PL). A summary can be found on [tl;drLegal](https://tldrlegal.com/license/microsoft-public-license-(ms-pl)).
 
 <a href="../../wiki/Xceed-Toolkit-Plus-for-WPF"><img align="right" src="https://user-images.githubusercontent.com/21266763/27969643-a5977614-6319-11e7-828e-b40fd1f8a283.png" width="233" style="margin:0px 30px" alt="Learn about Xceed Toolkit Plus for WPF here on Github"></a>Xceed offers the [Plus Edition](../../wiki/Xceed-Toolkit-Plus-for-WPF) for developers that want to support the project, get additional controls and features, get updates and professional support, and work with a version a few releases ahead.
 
 ## Latest news
 
-**November 26, 2019** v3.7.0 released with [18 bug fixes and improvements](../../wiki/Improvements-in-v3.7.0). 
+**February 7, 2019** v3.5.0 released with [26 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0). Users of the [Plus Edition](../../wiki/Xceed-Toolkit-Plus-for-WPF) v3.5.0 on September 12, 2017 with [29 bug fixes and improvements](../../wiki/Improvements-in-v3.3.0#Plus350), v3.6.0 on January 15, 2018 with [1 new control and 40 bug fixes and improvements](../../wiki/Improvements-in-v3.3.0#Plus360), v3.7.0 on June 18, 2018 with [27 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0#Plus370) and v3.8.0 on January 30, 2019 with [45 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0#Plus380)
 
-**September 27, 2019** v3.6.0 released with [36 bug fixes and improvements](../../wiki/Improvements-in-v3.6.0). 
-
-**February 7, 2019** v3.5.0 released with [26 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0). 
-
-*January 30, 2019* v3.8.0 of the [Plus Edition](../../wiki/Xceed-Toolkit-Plus-for-WPF) released with [45 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0#Plus380)
-
-*June 18, 2018* v3.7.0 of the [Plus Edition](../../wiki/Xceed-Toolkit-Plus-for-WPF) released with [27 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0#Plus370)
-
-*January 15, 2018* v3.6.0 of the [Plus Edition](../../wiki/Xceed-Toolkit-Plus-for-WPF) released with [1 new control and 40 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0#Plus360)
+**January 30, 2019** v3.8.0 of the [Plus Edition](../../wiki/Xceed-Toolkit-Plus-for-WPF) released with [45 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0#Plus380)
 
 **July 11, 2017:** The project's new home is Github. All issues from Codeplex are now located here.
 
@@ -154,20 +146,8 @@ Starting at v3.7.0, this free and open source toolkit is provided under the [Xce
 </tr>
 </table>
 
-## License Information
-
-Extended WPF Toolkit™ is provided under the Xceed Software, Inc. Community License.
-
-[<img src="https://user-images.githubusercontent.com/29377763/69274195-d9382200-0ba7-11ea-9ab7-bfce3126f35a.png"/>](license.md)
-
-More information can be found in the [License](license.md) page.
-
-A commercial license can be purchased at [Xceed](https://xceed.com).
-
 ## Release history
 
-* **November 26, 2019 v3.7.0 released with [18 bug fixes and improvements](../../wiki/Improvements-in-v3.7.0).**
-* **September 27, 2019 v3.6.0 released with [36 bug fixes and improvements](../../wiki/Improvements-in-v3.6.0).**
 * **February 7, 2019 v3.5.0 released with [26 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0).**
 * January 30, 2019, released v3.8.0 of the [Plus Edition](../../wiki/Xceed-Toolkit-Plus-for-WPF) released with [45 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0#Plus380).
 * **June 27, 2018 v3.4.0 released with [42 bug fixes and improvements](../../wiki/Improvements-in-v3.4.0).**
