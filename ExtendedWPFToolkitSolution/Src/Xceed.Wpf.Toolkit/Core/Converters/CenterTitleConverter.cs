@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,19 +15,17 @@
   ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Xceed.Wpf.Toolkit.Core.Converters
 {
     public class CenterTitleConverter : IMultiValueConverter
     {
+        #region Public Methods
+
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             // Parameters: DesiredSize, WindowWidth, HeaderColumns
@@ -37,7 +35,6 @@ namespace Xceed.Wpf.Toolkit.Core.Converters
             ColumnDefinitionCollection headerColumns = (ColumnDefinitionCollection)values[2];
             double titleColWidth = headerColumns[2].ActualWidth;
             double buttonsColWidth = headerColumns[3].ActualWidth;
-
 
             // Result (1) Title is Centered across all HeaderColumns
             if ((titleTextWidth + buttonsColWidth * 2) < windowWidth)
@@ -55,5 +52,7 @@ namespace Xceed.Wpf.Toolkit.Core.Converters
         {
             throw new NotImplementedException();
         }
+
+        #endregion Public Methods
     }
 }

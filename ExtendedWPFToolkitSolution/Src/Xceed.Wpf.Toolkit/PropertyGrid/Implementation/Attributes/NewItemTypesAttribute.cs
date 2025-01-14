@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,27 +19,35 @@ using System.Collections.Generic;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 {
-  /// <summary>
-  /// This attribute can decorate the collection properties (i.e., IList) 
-  /// of your selected object in order to control the types that will be allowed
-  /// to be instantiated in the CollectionControl.
-  /// </summary>
-  [AttributeUsage( AttributeTargets.Property, AllowMultiple = false, Inherited = true )]
-  public class NewItemTypesAttribute : Attribute
-  {
-    public IList<Type> Types
+    /// <summary>
+    /// This attribute can decorate the collection properties (i.e., IList)
+    /// of your selected object in order to control the types that will be allowed
+    /// to be instantiated in the CollectionControl.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    public class NewItemTypesAttribute : Attribute
     {
-      get;
-      set;
-    }
+        #region Public Properties
 
-    public NewItemTypesAttribute( params Type[] types )
-    {
-      this.Types = new List<Type>( types );
-    }
+        public IList<Type> Types
+        {
+            get;
+            set;
+        }
 
-    public NewItemTypesAttribute()
-    {
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public NewItemTypesAttribute(params Type[] types)
+        {
+            this.Types = new List<Type>(types);
+        }
+
+        public NewItemTypesAttribute()
+        {
+        }
+
+        #endregion Public Constructors
     }
-  }
 }

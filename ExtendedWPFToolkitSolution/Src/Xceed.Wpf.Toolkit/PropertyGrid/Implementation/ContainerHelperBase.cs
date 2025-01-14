@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,225 +14,263 @@
 
   ***********************************************************************************/
 
-using System.Collections.Generic;
-using System.Collections;
 using System;
-using System.Windows;
+using System.Collections;
 using System.ComponentModel;
-using Xceed.Wpf.Toolkit.Core.Utilities;
-using System.Windows.Data;
-using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
+using Xceed.Wpf.Toolkit.Core.Utilities;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid
 {
-  internal abstract class ContainerHelperBase
-  {
-    protected readonly IPropertyContainer PropertyContainer;
-
-    public ContainerHelperBase(IPropertyContainer propertyContainer)
+    internal abstract class ContainerHelperBase
     {
-      if( propertyContainer == null )
-        throw new ArgumentNullException( "propertyContainer" );
+        #region Internal Fields
 
-      PropertyContainer = propertyContainer;
+        internal static readonly DependencyProperty IsGeneratedProperty = DependencyProperty.RegisterAttached(
+          "IsGenerated",
+          typeof(bool),
+          typeof(ContainerHelperBase),
+          new PropertyMetadata(false));
 
-      var propChange = propertyContainer as INotifyPropertyChanged;
-      if( propChange != null )
-      {
-        propChange.PropertyChanged += new PropertyChangedEventHandler( OnPropertyContainerPropertyChanged );
-      }
-    }
+        #endregion Internal Fields
 
-    #region IsGenerated attached property
+        #region Protected Fields
 
-    internal static readonly DependencyProperty IsGeneratedProperty = DependencyProperty.RegisterAttached(
-      "IsGenerated",
-      typeof( bool ),
-      typeof( ContainerHelperBase ),
-      new PropertyMetadata( false ) );
+        protected readonly IPropertyContainer PropertyContainer;
 
-    internal static bool GetIsGenerated( DependencyObject obj )
-    {
-      return ( bool )obj.GetValue( ContainerHelperBase.IsGeneratedProperty );
-    }
+        #endregion Protected Fields
 
-    internal static void SetIsGenerated( DependencyObject obj, bool value )
-    {
-      obj.SetValue( ContainerHelperBase.IsGeneratedProperty, value );
-    }
+        #region Public Properties
 
-    #endregion IsGenerated attached property
-
-    public abstract IList Properties
-    {
-      get;
-    }
-
-    internal ItemsControl ChildrenItemsControl
-    {
-      get;
-      set;
-    }
-
-    internal bool IsCleaning
-    {
-      get;
-      private set;
-    }
-
-    public virtual void ClearHelper()
-    {
-      this.IsCleaning = true;
-
-      var propChange = PropertyContainer as INotifyPropertyChanged;
-      if( propChange != null )
-      {
-        propChange.PropertyChanged -= new PropertyChangedEventHandler( OnPropertyContainerPropertyChanged );
-      }
-
-      // Calling RemoveAll() will force the ItemsContol displaying the
-      // properties to clear all the current container (i.e., ClearContainerForItem).
-      // This will make the call at "ClearChildrenPropertyItem" for every prepared
-      // container. Fortunately, the ItemsContainer will not re-prepare the items yet
-      // (i.e., probably made on next measure pass), allowing us to set up the new
-      // parent helper.
-      if( ChildrenItemsControl != null )
-      {
-        ( ( IItemContainerGenerator )ChildrenItemsControl.ItemContainerGenerator ).RemoveAll();
-      }
-      this.IsCleaning = false;
-    }
-
-    public virtual void PrepareChildrenPropertyItem( PropertyItemBase propertyItem, object item ) 
-    {
-      // Initialize the parent node
-      propertyItem.ParentNode = PropertyContainer;
-
-      PropertyGrid.RaisePreparePropertyItemEvent( ( UIElement )PropertyContainer, propertyItem, item );
-    }
-
-    public virtual void ClearChildrenPropertyItem( PropertyItemBase propertyItem, object item )
-    {
-
-      propertyItem.ParentNode = null;
-
-      PropertyGrid.RaiseClearPropertyItemEvent( ( UIElement )PropertyContainer, propertyItem, item );
-    }
-
-    protected FrameworkElement GenerateCustomEditingElement( Type definitionKey, PropertyItemBase propertyItem )
-    {
-      return ( PropertyContainer.EditorDefinitions != null )
-        ? this.CreateCustomEditor( PropertyContainer.EditorDefinitions.GetRecursiveBaseTypes( definitionKey ), propertyItem )
-        : null;
-    }
-
-    protected FrameworkElement GenerateCustomEditingElement( object definitionKey, PropertyItemBase propertyItem )
-    {
-      return ( PropertyContainer.EditorDefinitions != null )
-        ? this.CreateCustomEditor( PropertyContainer.EditorDefinitions[ definitionKey ], propertyItem )
-        : null;
-    }
-
-    protected FrameworkElement CreateCustomEditor( EditorDefinitionBase customEditor, PropertyItemBase propertyItem )
-    {
-      return ( customEditor != null )
-        ? customEditor.GenerateEditingElementInternal( propertyItem )
-        : null;
-    }
-
-    protected virtual void OnPropertyContainerPropertyChanged( object sender, PropertyChangedEventArgs e )
-    {
-      var propertyName = e.PropertyName;
-      IPropertyContainer ps = null;
-      if( propertyName == ReflectionHelper.GetPropertyOrFieldName( () => ps.FilterInfo ) )
-      {
-        this.OnFilterChanged();
-      }
-      else if( propertyName == ReflectionHelper.GetPropertyOrFieldName( () => ps.IsCategorized ) )
-      {
-        this.OnCategorizationChanged();
-      }
-      else if( propertyName == ReflectionHelper.GetPropertyOrFieldName( () => ps.AutoGenerateProperties ) )
-      {
-        this.OnAutoGeneratePropertiesChanged();
-      }
-      else if( propertyName == ReflectionHelper.GetPropertyOrFieldName( () => ps.HideInheritedProperties ) )
-      {
-        this.OnHideInheritedPropertiesChanged();
-      }
-      else if(propertyName == ReflectionHelper.GetPropertyOrFieldName( () => ps.EditorDefinitions ))
-      {
-        this.OnEditorDefinitionsChanged();
-      }
-      else if(propertyName == ReflectionHelper.GetPropertyOrFieldName( () => ps.PropertyDefinitions ))
-      {
-        this.OnPropertyDefinitionsChanged();
-      }
-    }
-
-    protected virtual void OnCategorizationChanged() { }
-
-    protected virtual void OnFilterChanged() { }
-
-    protected virtual void OnAutoGeneratePropertiesChanged() { }
-
-    protected virtual void OnHideInheritedPropertiesChanged() { }
-
-    protected virtual void OnEditorDefinitionsChanged() { }
-
-    protected virtual void OnPropertyDefinitionsChanged() { }
-
-
-    public virtual void OnEndInit() { }
-
-    public abstract PropertyItemBase ContainerFromItem( object item );
-
-    public abstract object ItemFromContainer( PropertyItemBase container );
-
-    public abstract Binding CreateChildrenDefaultBinding( PropertyItemBase propertyItem );
-
-    public virtual void NotifyEditorDefinitionsCollectionChanged() { }
-    public virtual void NotifyPropertyDefinitionsCollectionChanged() { }
-
-    public abstract void UpdateValuesFromSource();
-
-    protected internal virtual void SetPropertiesExpansion( bool isExpanded )
-    {
-      foreach( var item in this.Properties )
-      {
-        var propertyItem = item as PropertyItemBase;
-        if( (propertyItem != null) && propertyItem.IsExpandable )
+        public abstract IList Properties
         {
-          if( propertyItem.ContainerHelper != null )
-          {
-            propertyItem.ContainerHelper.SetPropertiesExpansion( isExpanded );
-          }
-          propertyItem.IsExpanded = isExpanded;
+            get;
         }
-      }
-    }
 
-    protected internal virtual void SetPropertiesExpansion( string propertyName, bool isExpanded )
-    {
-      foreach( var item in this.Properties )
-      {
-        var propertyItem = item as PropertyItemBase;
-        if( (propertyItem != null) && propertyItem.IsExpandable )
+        #endregion Public Properties
+
+        #region Internal Properties
+
+        internal ItemsControl ChildrenItemsControl
         {
-          if( propertyItem.DisplayName == propertyName )
-          {
-            propertyItem.IsExpanded = isExpanded;
-            break;
-          }
-
-          if( propertyItem.ContainerHelper != null )
-          {
-            propertyItem.ContainerHelper.SetPropertiesExpansion( propertyName, isExpanded );
-          }
+            get;
+            set;
         }
-      }
+
+        internal bool IsCleaning
+        {
+            get;
+            private set;
+        }
+
+        #endregion Internal Properties
+
+        #region Public Constructors
+
+        public ContainerHelperBase(IPropertyContainer propertyContainer)
+        {
+            if (propertyContainer == null)
+                throw new ArgumentNullException("propertyContainer");
+
+            PropertyContainer = propertyContainer;
+
+            var propChange = propertyContainer as INotifyPropertyChanged;
+            if (propChange != null)
+            {
+                propChange.PropertyChanged += new PropertyChangedEventHandler(OnPropertyContainerPropertyChanged);
+            }
+        }
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        public virtual void ClearChildrenPropertyItem(PropertyItemBase propertyItem, object item)
+        {
+            propertyItem.ParentNode = null;
+
+            PropertyGrid.RaiseClearPropertyItemEvent((UIElement)PropertyContainer, propertyItem, item);
+        }
+
+        public virtual void ClearHelper()
+        {
+            this.IsCleaning = true;
+
+            var propChange = PropertyContainer as INotifyPropertyChanged;
+            if (propChange != null)
+            {
+                propChange.PropertyChanged -= new PropertyChangedEventHandler(OnPropertyContainerPropertyChanged);
+            }
+
+            // Calling RemoveAll() will force the ItemsContol displaying the
+            // properties to clear all the current container (i.e., ClearContainerForItem).
+            // This will make the call at "ClearChildrenPropertyItem" for every prepared
+            // container. Fortunately, the ItemsContainer will not re-prepare the items yet
+            // (i.e., probably made on next measure pass), allowing us to set up the new
+            // parent helper.
+            if (ChildrenItemsControl != null)
+            {
+                ((IItemContainerGenerator)ChildrenItemsControl.ItemContainerGenerator).RemoveAll();
+            }
+            this.IsCleaning = false;
+        }
+
+        public abstract PropertyItemBase ContainerFromItem(object item);
+
+        public abstract Binding CreateChildrenDefaultBinding(PropertyItemBase propertyItem);
+
+        public abstract object ItemFromContainer(PropertyItemBase container);
+
+        public virtual void NotifyEditorDefinitionsCollectionChanged()
+        { }
+
+        public virtual void NotifyPropertyDefinitionsCollectionChanged()
+        { }
+
+        public virtual void OnEndInit()
+        { }
+
+        public virtual void PrepareChildrenPropertyItem(PropertyItemBase propertyItem, object item)
+        {
+            // Initialize the parent node
+            propertyItem.ParentNode = PropertyContainer;
+
+            PropertyGrid.RaisePreparePropertyItemEvent((UIElement)PropertyContainer, propertyItem, item);
+        }
+
+        public abstract void UpdateValuesFromSource();
+
+        #endregion Public Methods
+
+        #region Internal Methods
+
+        internal static bool GetIsGenerated(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(ContainerHelperBase.IsGeneratedProperty);
+        }
+
+        internal static void SetIsGenerated(DependencyObject obj, bool value)
+        {
+            obj.SetValue(ContainerHelperBase.IsGeneratedProperty, value);
+        }
+
+        #endregion Internal Methods
+
+        #region Protected Internal Methods
+
+        protected internal virtual void SetPropertiesExpansion(bool isExpanded)
+        {
+            foreach (var item in this.Properties)
+            {
+                var propertyItem = item as PropertyItemBase;
+                if ((propertyItem != null) && propertyItem.IsExpandable)
+                {
+                    if (propertyItem.ContainerHelper != null)
+                    {
+                        propertyItem.ContainerHelper.SetPropertiesExpansion(isExpanded);
+                    }
+                    propertyItem.IsExpanded = isExpanded;
+                }
+            }
+        }
+
+        protected internal virtual void SetPropertiesExpansion(string propertyName, bool isExpanded)
+        {
+            foreach (var item in this.Properties)
+            {
+                var propertyItem = item as PropertyItemBase;
+                if ((propertyItem != null) && propertyItem.IsExpandable)
+                {
+                    if (propertyItem.DisplayName == propertyName)
+                    {
+                        propertyItem.IsExpanded = isExpanded;
+                        break;
+                    }
+
+                    if (propertyItem.ContainerHelper != null)
+                    {
+                        propertyItem.ContainerHelper.SetPropertiesExpansion(propertyName, isExpanded);
+                    }
+                }
+            }
+        }
+
+        #endregion Protected Internal Methods
+
+        #region Protected Methods
+
+        protected FrameworkElement CreateCustomEditor(EditorDefinitionBase customEditor, PropertyItemBase propertyItem)
+        {
+            return (customEditor != null)
+              ? customEditor.GenerateEditingElementInternal(propertyItem)
+              : null;
+        }
+
+        protected FrameworkElement GenerateCustomEditingElement(Type definitionKey, PropertyItemBase propertyItem)
+        {
+            return (PropertyContainer.EditorDefinitions != null)
+              ? this.CreateCustomEditor(PropertyContainer.EditorDefinitions.GetRecursiveBaseTypes(definitionKey), propertyItem)
+              : null;
+        }
+
+        protected FrameworkElement GenerateCustomEditingElement(object definitionKey, PropertyItemBase propertyItem)
+        {
+            return (PropertyContainer.EditorDefinitions != null)
+              ? this.CreateCustomEditor(PropertyContainer.EditorDefinitions[definitionKey], propertyItem)
+              : null;
+        }
+
+        protected virtual void OnAutoGeneratePropertiesChanged()
+        { }
+
+        protected virtual void OnCategorizationChanged()
+        { }
+
+        protected virtual void OnEditorDefinitionsChanged()
+        { }
+
+        protected virtual void OnFilterChanged()
+        { }
+
+        protected virtual void OnHideInheritedPropertiesChanged()
+        { }
+
+        protected virtual void OnPropertyContainerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var propertyName = e.PropertyName;
+            IPropertyContainer ps = null;
+            if (propertyName == ReflectionHelper.GetPropertyOrFieldName(() => ps.FilterInfo))
+            {
+                this.OnFilterChanged();
+            }
+            else if (propertyName == ReflectionHelper.GetPropertyOrFieldName(() => ps.IsCategorized))
+            {
+                this.OnCategorizationChanged();
+            }
+            else if (propertyName == ReflectionHelper.GetPropertyOrFieldName(() => ps.AutoGenerateProperties))
+            {
+                this.OnAutoGeneratePropertiesChanged();
+            }
+            else if (propertyName == ReflectionHelper.GetPropertyOrFieldName(() => ps.HideInheritedProperties))
+            {
+                this.OnHideInheritedPropertiesChanged();
+            }
+            else if (propertyName == ReflectionHelper.GetPropertyOrFieldName(() => ps.EditorDefinitions))
+            {
+                this.OnEditorDefinitionsChanged();
+            }
+            else if (propertyName == ReflectionHelper.GetPropertyOrFieldName(() => ps.PropertyDefinitions))
+            {
+                this.OnPropertyDefinitionsChanged();
+            }
+        }
+
+        protected virtual void OnPropertyDefinitionsChanged()
+        { }
+
+        #endregion Protected Methods
     }
-  }
 }

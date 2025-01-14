@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,5 +16,5 @@
 
 namespace Xceed.Wpf.Toolkit.Panels
 {
-  public delegate void ChildEnteredEventHandler( object sender, ChildEnteredEventArgs e );
+    public delegate void ChildEnteredEventHandler(object sender, ChildEnteredEventArgs e);
 }

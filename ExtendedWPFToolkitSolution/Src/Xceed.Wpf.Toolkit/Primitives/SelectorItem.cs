@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,69 +19,83 @@ using System.Windows.Controls;
 
 namespace Xceed.Wpf.Toolkit.Primitives
 {
-  public class SelectorItem : ContentControl
-  {
-    #region Constructors
-
-    static SelectorItem()
+    public class SelectorItem : ContentControl
     {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( SelectorItem ), new FrameworkPropertyMetadata( typeof( SelectorItem ) ) );
-    }
+        #region Public Fields
 
-    #endregion //Constructors
+        public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register("IsSelected", typeof(bool?), typeof(SelectorItem), new UIPropertyMetadata(false, OnIsSelectedChanged));
 
-    #region Properties
+        public static readonly RoutedEvent SelectedEvent = Selector.SelectedEvent.AddOwner(typeof(SelectorItem));
 
-    public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register( "IsSelected", typeof( bool? ), typeof( SelectorItem ), new UIPropertyMetadata( false, OnIsSelectedChanged ) );
-    public bool? IsSelected
-    {
-      get
-      {
-        return ( bool? )GetValue( IsSelectedProperty );
-      }
-      set
-      {
-        SetValue( IsSelectedProperty, value );
-      }
-    }
+        public static readonly RoutedEvent UnselectedEvent = Selector.UnSelectedEvent.AddOwner(typeof(SelectorItem));
 
-    private static void OnIsSelectedChanged( DependencyObject o, DependencyPropertyChangedEventArgs e )
-    {
-      SelectorItem selectorItem = o as SelectorItem;
-      if( selectorItem != null )
-        selectorItem.OnIsSelectedChanged( ( bool? )e.OldValue, ( bool? )e.NewValue );
-    }
+        #endregion Public Fields
 
-    protected virtual void OnIsSelectedChanged( bool? oldValue, bool? newValue )
-    {
-      if( newValue.HasValue )
-      {
-        if( newValue.Value )
+        #region Public Properties
+
+        public bool? IsSelected
         {
-          this.RaiseEvent( new RoutedEventArgs( Selector.SelectedEvent, this ) );
+            get
+            {
+                return (bool?)GetValue(IsSelectedProperty);
+            }
+            set
+            {
+                SetValue(IsSelectedProperty, value);
+            }
         }
-        else
+
+        #endregion Public Properties
+
+        #region Internal Properties
+
+        internal Selector ParentSelector
         {
-          this.RaiseEvent( new RoutedEventArgs( Selector.UnSelectedEvent, this ) );
+            get
+            {
+                return ItemsControl.ItemsControlFromItemContainer(this) as Selector;
+            }
         }
-      }
+
+        #endregion Internal Properties
+
+        #region Public Constructors
+
+        static SelectorItem()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(SelectorItem), new FrameworkPropertyMetadata(typeof(SelectorItem)));
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected virtual void OnIsSelectedChanged(bool? oldValue, bool? newValue)
+        {
+            if (newValue.HasValue)
+            {
+                if (newValue.Value)
+                {
+                    this.RaiseEvent(new RoutedEventArgs(Selector.SelectedEvent, this));
+                }
+                else
+                {
+                    this.RaiseEvent(new RoutedEventArgs(Selector.UnSelectedEvent, this));
+                }
+            }
+        }
+
+        #endregion Protected Methods
+
+        #region Private Methods
+
+        private static void OnIsSelectedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            SelectorItem selectorItem = o as SelectorItem;
+            if (selectorItem != null)
+                selectorItem.OnIsSelectedChanged((bool?)e.OldValue, (bool?)e.NewValue);
+        }
+
+        #endregion Private Methods
     }
-
-    internal Selector ParentSelector
-    {
-      get
-      {
-        return ItemsControl.ItemsControlFromItemContainer( this ) as Selector;
-      }
-    }
-
-    #endregion //Properties
-
-    #region Events
-
-    public static readonly RoutedEvent SelectedEvent = Selector.SelectedEvent.AddOwner( typeof( SelectorItem ) );
-    public static readonly RoutedEvent UnselectedEvent = Selector.UnSelectedEvent.AddOwner( typeof( SelectorItem ) );
-
-    #endregion
-  }
 }

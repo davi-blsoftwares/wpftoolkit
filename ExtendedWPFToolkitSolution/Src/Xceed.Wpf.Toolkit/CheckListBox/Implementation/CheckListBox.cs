@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,24 +19,19 @@ using Xceed.Wpf.Toolkit.Primitives;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class CheckListBox : SelectAllSelector
-  {
-    #region Constructors
-
-    static CheckListBox()
+    public class CheckListBox : SelectAllSelector
     {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( CheckListBox ), new FrameworkPropertyMetadata( typeof( CheckListBox ) ) );
+        #region Public Constructors
+
+        static CheckListBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CheckListBox), new FrameworkPropertyMetadata(typeof(CheckListBox)));
+        }
+
+        public CheckListBox()
+        {
+        }
+
+        #endregion Public Constructors
     }
-
-    public CheckListBox()
-    {
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Override
-
-
-    #endregion
-  }
 }

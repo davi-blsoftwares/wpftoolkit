@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,15 +14,11 @@
 
   ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Xceed.Wpf.Toolkit
 {
-  public enum AutoSelectBehavior
-  {
-    Never,
-    OnFocus
-  }
+    public enum AutoSelectBehavior
+    {
+        Never,
+        OnFocus
+    }
 }

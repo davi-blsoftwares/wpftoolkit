@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,21 +18,29 @@ using System;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 {
-  public class ItemsSourceAttribute : Attribute
-  {
-    public Type Type
+    public class ItemsSourceAttribute : Attribute
     {
-      get;
-      set;
-    }
+        #region Public Properties
 
-    public ItemsSourceAttribute( Type type )
-    {
-      var valueSourceInterface = type.GetInterface( typeof( IItemsSource ).FullName );
-      if( valueSourceInterface == null )
-        throw new ArgumentException( "Type must implement the IItemsSource interface.", "type" );
+        public Type Type
+        {
+            get;
+            set;
+        }
 
-      Type = type;
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public ItemsSourceAttribute(Type type)
+        {
+            var valueSourceInterface = type.GetInterface(typeof(IItemsSource).FullName);
+            if (valueSourceInterface == null)
+                throw new ArgumentException("Type must implement the IItemsSource interface.", "type");
+
+            Type = type;
+        }
+
+        #endregion Public Constructors
     }
-  }
 }

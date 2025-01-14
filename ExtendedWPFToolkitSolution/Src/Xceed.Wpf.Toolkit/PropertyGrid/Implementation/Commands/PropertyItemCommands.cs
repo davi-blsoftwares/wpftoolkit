@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,15 +18,24 @@ using System.Windows.Input;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Commands
 {
-  public static class PropertyItemCommands
-  {
-    private static RoutedCommand _resetValueCommand = new RoutedCommand();
-    public static RoutedCommand ResetValue
+    public static class PropertyItemCommands
     {
-      get
-      {
-        return _resetValueCommand;
-      }
+        #region Private Fields
+
+        private static RoutedCommand _resetValueCommand = new RoutedCommand();
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public static RoutedCommand ResetValue
+        {
+            get
+            {
+                return _resetValueCommand;
+            }
+        }
+
+        #endregion Public Properties
     }
-  }
 }

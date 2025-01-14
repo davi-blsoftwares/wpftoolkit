@@ -28,7 +28,6 @@
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-
     <!-- =============================================================================== -->
     <!-- ChildWindow                                                                      -->
     <!-- =============================================================================== -->
@@ -64,30 +63,30 @@
 
                         <!-- Used for drag -->
                         <Grid x:Name="PART_WindowRoot"
-                          HorizontalAlignment="Left" 
-                          VerticalAlignment="Top" 
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
                           MinWidth="{TemplateBinding MinWidth}"
-                          MinHeight="{TemplateBinding MinHeight}" 
-                          Width="{TemplateBinding Width}" 
+                          MinHeight="{TemplateBinding MinHeight}"
+                          Width="{TemplateBinding Width}"
                           Height="{TemplateBinding Height}">
 
-                            <prim:WindowControl x:Name="PART_WindowControl" 
+                            <prim:WindowControl x:Name="PART_WindowControl"
                                             Caption="{TemplateBinding Caption}"
                                             CaptionFontSize="{TemplateBinding CaptionFontSize}"
-                                            CaptionForeground="{TemplateBinding CaptionForeground}" 
-                                            CaptionShadowBrush="{TemplateBinding CaptionShadowBrush}" 
+                                            CaptionForeground="{TemplateBinding CaptionForeground}"
+                                            CaptionShadowBrush="{TemplateBinding CaptionShadowBrush}"
                                             CaptionIcon="{TemplateBinding CaptionIcon}"
                                             Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}" 
-                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
                                             IsActive="{TemplateBinding IsActive}"
-                                            WindowBackground="{TemplateBinding WindowBackground}" 
-                                            WindowInactiveBackground="{TemplateBinding WindowInactiveBackground}" 
+                                            WindowBackground="{TemplateBinding WindowBackground}"
+                                            WindowInactiveBackground="{TemplateBinding WindowInactiveBackground}"
                                             WindowBorderBrush="{TemplateBinding WindowBorderBrush}"
                                             WindowBorderThickness="{TemplateBinding WindowBorderThickness}"
                                             CloseButtonVisibility="{TemplateBinding CloseButtonVisibility}"
-                                            CloseButtonStyle="{TemplateBinding CloseButtonStyle}" 
-                                            WindowOpacity="{TemplateBinding WindowOpacity}" 
+                                            CloseButtonStyle="{TemplateBinding CloseButtonStyle}"
+                                            WindowOpacity="{TemplateBinding WindowOpacity}"
                                             Content="{TemplateBinding Content}"
                                             ContentTemplate="{TemplateBinding ContentTemplate}"
                                             WindowStyle="{TemplateBinding WindowStyle}"
@@ -106,5 +105,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,35 +14,43 @@
 
   ***********************************************************************************/
 
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Editors
 {
-  public class TextBlockEditor : TypeEditor<TextBlock>
-  {
-    protected override TextBlock CreateEditor()
+    public class PropertyGridEditorTextBlock : TextBlock
     {
-      return new PropertyGridEditorTextBlock();
+        #region Public Constructors
+
+        static PropertyGridEditorTextBlock()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(PropertyGridEditorTextBlock), new FrameworkPropertyMetadata(typeof(PropertyGridEditorTextBlock)));
+        }
+
+        #endregion Public Constructors
     }
 
-    protected override void SetValueDependencyProperty()
+    public class TextBlockEditor : TypeEditor<TextBlock>
     {
-      ValueProperty = TextBlock.TextProperty;
-    }
+        #region Protected Methods
 
-    protected override void SetControlProperties( PropertyItem propertyItem )
-    {
-      Editor.Margin = new System.Windows.Thickness( 5, 0, 0, 0 );
-      Editor.TextTrimming = TextTrimming.CharacterEllipsis;
-    }
-  }
+        protected override TextBlock CreateEditor()
+        {
+            return new PropertyGridEditorTextBlock();
+        }
 
-  public class PropertyGridEditorTextBlock : TextBlock
-  {
-    static PropertyGridEditorTextBlock()
-    {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( PropertyGridEditorTextBlock ), new FrameworkPropertyMetadata( typeof( PropertyGridEditorTextBlock ) ) );
+        protected override void SetControlProperties(PropertyItem propertyItem)
+        {
+            Editor.Margin = new System.Windows.Thickness(5, 0, 0, 0);
+            Editor.TextTrimming = TextTrimming.CharacterEllipsis;
+        }
+
+        protected override void SetValueDependencyProperty()
+        {
+            ValueProperty = TextBlock.TextProperty;
+        }
+
+        #endregion Protected Methods
     }
-  }
 }

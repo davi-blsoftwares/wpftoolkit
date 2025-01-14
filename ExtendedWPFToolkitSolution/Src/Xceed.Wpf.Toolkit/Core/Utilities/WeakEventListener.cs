@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,29 +15,38 @@
   ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Xceed.Wpf.Toolkit.Core.Utilities
 {
-  internal class WeakEventListener<TArgs> : IWeakEventListener where TArgs : EventArgs
-  {
-    private Action<object,TArgs> _callback;
-
-    public WeakEventListener(Action<object,TArgs> callback)
+    internal class WeakEventListener<TArgs> : IWeakEventListener where TArgs : EventArgs
     {
-      if( callback == null )
-         throw new ArgumentNullException( "callback" );
+        #region Private Fields
 
-      _callback = callback;
-    }
+        private Action<object, TArgs> _callback;
 
-    public bool ReceiveWeakEvent( Type managerType, object sender, EventArgs e )
-    {
-      _callback(sender, (TArgs)e);
-      return true;
+        #endregion Private Fields
+
+        #region Public Constructors
+
+        public WeakEventListener(Action<object, TArgs> callback)
+        {
+            if (callback == null)
+                throw new ArgumentNullException("callback");
+
+            _callback = callback;
+        }
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        public bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
+        {
+            _callback(sender, (TArgs)e);
+            return true;
+        }
+
+        #endregion Public Methods
     }
-  }
 }

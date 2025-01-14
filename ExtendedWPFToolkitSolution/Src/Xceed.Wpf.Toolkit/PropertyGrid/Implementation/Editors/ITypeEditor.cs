@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,8 +18,12 @@ using System.Windows;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Editors
 {
-  public interface ITypeEditor
-  {
-    FrameworkElement ResolveEditor( PropertyItem propertyItem );
-  }
+    public interface ITypeEditor
+    {
+        #region Public Methods
+
+        FrameworkElement ResolveEditor(PropertyItem propertyItem);
+
+        #endregion Public Methods
+    }
 }

@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,20 +19,20 @@ using System.Windows.Data;
 
 namespace Xceed.Wpf.Toolkit.Core.Converters
 {
-  public class InverseBoolConverter : IValueConverter
-  {
-    #region IValueConverter Members
-
-    public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+    public class InverseBoolConverter : IValueConverter
     {
-      return !( bool )value;
-    }
+        #region Public Methods
 
-    public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
-    {
-      throw new NotImplementedException();
-    }
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return !(bool)value;
+        }
 
-    #endregion
-  }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion Public Methods
+    }
 }

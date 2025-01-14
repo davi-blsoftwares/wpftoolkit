@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,5 +16,5 @@
 
 namespace Xceed.Wpf.Toolkit.Core
 {
-  public delegate void IndexChangedEventHandler( object sender, IndexChangedEventArgs e );
+    public delegate void IndexChangedEventHandler(object sender, IndexChangedEventArgs e);
 }

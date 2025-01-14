@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,20 +18,20 @@ using System;
 
 namespace Xceed.Wpf.Toolkit.Core
 {
-  public class InvalidTemplateException : Exception
-  {
-    #region Constructors
-
-    public InvalidTemplateException( string message )
-      : base( message )
+    public class InvalidTemplateException : Exception
     {
-    }
+        #region Public Constructors
 
-    public InvalidTemplateException( string message, Exception innerException )
-      : base( message, innerException )
-    {
-    }
+        public InvalidTemplateException(string message)
+      : base(message)
+        {
+        }
 
-    #endregion
-  }
+        public InvalidTemplateException(string message, Exception innerException)
+          : base(message, innerException)
+        {
+        }
+
+        #endregion Public Constructors
+    }
 }

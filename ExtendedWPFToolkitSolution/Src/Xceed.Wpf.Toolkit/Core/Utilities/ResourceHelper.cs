@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -20,17 +20,21 @@ using System.Resources;
 
 namespace Xceed.Wpf.Toolkit.Core.Utilities
 {
-  internal class ResourceHelper
-  {
-    internal static Stream LoadResourceStream( Assembly assembly, string resId )
+    internal class ResourceHelper
     {
-      string basename = System.IO.Path.GetFileNameWithoutExtension( assembly.ManifestModule.Name ) + ".g";
-      ResourceManager resourceManager = new ResourceManager( basename, assembly );
+        #region Internal Methods
 
-      // resource names are lower case and contain only forward slashes
-      resId = resId.ToLower();
-      resId = resId.Replace( '\\', '/' );
-      return ( resourceManager.GetObject( resId ) as Stream );
+        internal static Stream LoadResourceStream(Assembly assembly, string resId)
+        {
+            string basename = System.IO.Path.GetFileNameWithoutExtension(assembly.ManifestModule.Name) + ".g";
+            ResourceManager resourceManager = new ResourceManager(basename, assembly);
+
+            // resource names are lower case and contain only forward slashes
+            resId = resId.ToLower();
+            resId = resId.Replace('\\', '/');
+            return (resourceManager.GetObject(resId) as Stream);
+        }
+
+        #endregion Internal Methods
     }
-  }
 }

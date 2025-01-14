@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,11 +16,11 @@
 
 namespace Xceed.Wpf.Toolkit.Zoombox
 {
-  public enum ZoomboxViewStackMode
-  {
-    Auto,
-    Default,
-    Disabled,
-    Manual,
-  }
+    public enum ZoomboxViewStackMode
+    {
+        Auto,
+        Default,
+        Disabled,
+        Manual,
+    }
 }

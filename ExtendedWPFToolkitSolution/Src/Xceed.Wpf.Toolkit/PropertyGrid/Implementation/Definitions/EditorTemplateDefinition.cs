@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,34 +14,38 @@
 
   ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid
 {
-  public class EditorTemplateDefinition : EditorDefinitionBase
-  {
-
-
-    #region EditingTemplate
-    public static readonly DependencyProperty EditingTemplateProperty =
-        DependencyProperty.Register( "EditingTemplate", typeof( DataTemplate ), typeof( EditorTemplateDefinition ), new UIPropertyMetadata( null ) );
-
-    public DataTemplate EditingTemplate
+    public class EditorTemplateDefinition : EditorDefinitionBase
     {
-      get { return ( DataTemplate )GetValue( EditingTemplateProperty ); }
-      set { SetValue( EditingTemplateProperty, value ); }
-    }
-    #endregion //EditingTemplate
+        #region Public Fields
 
-    protected override sealed FrameworkElement GenerateEditingElement( PropertyItemBase propertyItem )
-    {
-      return ( this.EditingTemplate != null )
-        ? this.EditingTemplate.LoadContent() as FrameworkElement
-        : null;
+        public static readonly DependencyProperty EditingTemplateProperty =
+        DependencyProperty.Register("EditingTemplate", typeof(DataTemplate), typeof(EditorTemplateDefinition), new UIPropertyMetadata(null));
+
+        #endregion Public Fields
+
+        #region Public Properties
+
+        public DataTemplate EditingTemplate
+        {
+            get { return (DataTemplate)GetValue(EditingTemplateProperty); }
+            set { SetValue(EditingTemplateProperty, value); }
+        }
+
+        #endregion Public Properties
+
+        #region Protected Methods
+
+        protected override sealed FrameworkElement GenerateEditingElement(PropertyItemBase propertyItem)
+        {
+            return (this.EditingTemplate != null)
+              ? this.EditingTemplate.LoadContent() as FrameworkElement
+              : null;
+        }
+
+        #endregion Protected Methods
     }
-  }
 }

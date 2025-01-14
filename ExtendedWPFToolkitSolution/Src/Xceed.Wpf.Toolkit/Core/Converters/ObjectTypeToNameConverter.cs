@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -21,34 +21,39 @@ using System.Windows.Data;
 
 namespace Xceed.Wpf.Toolkit.Core.Converters
 {
-  public class ObjectTypeToNameConverter : IValueConverter
-  {
-    public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+    public class ObjectTypeToNameConverter : IValueConverter
     {
-      if( value != null )
-      {
-        if( value is Type )
+        #region Public Methods
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-          var displayNameAttribute = ( ( Type )value ).GetCustomAttributes( false ).OfType<DisplayNameAttribute>().FirstOrDefault();
-          return ( displayNameAttribute != null ) ? displayNameAttribute.DisplayName : ( ( Type )value ).Name;
+            if (value != null)
+            {
+                if (value is Type)
+                {
+                    var displayNameAttribute = ((Type)value).GetCustomAttributes(false).OfType<DisplayNameAttribute>().FirstOrDefault();
+                    return (displayNameAttribute != null) ? displayNameAttribute.DisplayName : ((Type)value).Name;
+                }
+
+                var type = value.GetType();
+                var valueString = value.ToString();
+                if (string.IsNullOrEmpty(valueString)
+                 || (valueString == type.UnderlyingSystemType.ToString()))
+                {
+                    var displayNameAttribute = type.GetCustomAttributes(false).OfType<DisplayNameAttribute>().FirstOrDefault();
+                    return (displayNameAttribute != null) ? displayNameAttribute.DisplayName : type.Name;
+                }
+
+                return value;
+            }
+            return null;
         }
 
-        var type = value.GetType();
-        var valueString = value.ToString();
-        if( string.IsNullOrEmpty( valueString )
-         || ( valueString == type.UnderlyingSystemType.ToString() ) )
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-          var displayNameAttribute = type.GetCustomAttributes( false ).OfType<DisplayNameAttribute>().FirstOrDefault();
-          return ( displayNameAttribute != null ) ? displayNameAttribute.DisplayName : type.Name;
+            throw new NotImplementedException();
         }
 
-        return value; 
-      }
-      return null;
+        #endregion Public Methods
     }
-    public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
-    {
-      throw new NotImplementedException();
-    }
-  }
 }

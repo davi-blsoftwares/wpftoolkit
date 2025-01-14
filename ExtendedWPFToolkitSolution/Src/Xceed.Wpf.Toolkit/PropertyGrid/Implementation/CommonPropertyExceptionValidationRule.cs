@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,44 +15,53 @@
   ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
 using System.ComponentModel;
-using Xceed.Wpf.Toolkit.Core.Utilities;
 using System.Globalization;
+using System.Windows.Controls;
+using Xceed.Wpf.Toolkit.Core.Utilities;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid
 {
-  internal class CommonPropertyExceptionValidationRule : ValidationRule
-  {
-    private TypeConverter _propertyTypeConverter;
-    private Type _type;
-
-    internal CommonPropertyExceptionValidationRule( Type type )
+    internal class CommonPropertyExceptionValidationRule : ValidationRule
     {
-      _propertyTypeConverter = TypeDescriptor.GetConverter( type );
-      _type = type;
-    }
+        #region Private Fields
 
-    public override ValidationResult Validate( object value, CultureInfo cultureInfo )
-    {
-      ValidationResult result = new ValidationResult( true, null );
+        private TypeConverter _propertyTypeConverter;
+        private Type _type;
 
-      if( GeneralUtilities.CanConvertValue( value, _type ) )
-      {
-        try
+        #endregion Private Fields
+
+        #region Internal Constructors
+
+        internal CommonPropertyExceptionValidationRule(Type type)
         {
-          _propertyTypeConverter.ConvertFrom( value );
+            _propertyTypeConverter = TypeDescriptor.GetConverter(type);
+            _type = type;
         }
-        catch( Exception e )
+
+        #endregion Internal Constructors
+
+        #region Public Methods
+
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-          // Will display a red border in propertyGrid
-          result = new ValidationResult( false, e.Message );
+            ValidationResult result = new ValidationResult(true, null);
+
+            if (GeneralUtilities.CanConvertValue(value, _type))
+            {
+                try
+                {
+                    _propertyTypeConverter.ConvertFrom(value);
+                }
+                catch (Exception e)
+                {
+                    // Will display a red border in propertyGrid
+                    result = new ValidationResult(false, e.Message);
+                }
+            }
+            return result;
         }
-      }
-      return result;
+
+        #endregion Public Methods
     }
-  }
 }

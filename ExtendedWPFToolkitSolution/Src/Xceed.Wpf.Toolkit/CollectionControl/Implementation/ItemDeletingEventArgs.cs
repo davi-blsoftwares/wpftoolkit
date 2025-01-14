@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,43 +14,39 @@
 
   ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xceed.Wpf.Toolkit.Core;
 using System.Windows;
+using Xceed.Wpf.Toolkit.Core;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class ItemDeletingEventArgs : CancelRoutedEventArgs
-  {
-    #region Private Members
-
-    private object _item;
-
-    #endregion
-
-    #region Constructor
-
-    public ItemDeletingEventArgs( RoutedEvent itemDeletingEvent, object itemDeleting )
-      : base( itemDeletingEvent )
+    public class ItemDeletingEventArgs : CancelRoutedEventArgs
     {
-      _item = itemDeleting;
+        #region Private Fields
+
+        private object _item;
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public object Item
+        {
+            get
+            {
+                return _item;
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public ItemDeletingEventArgs(RoutedEvent itemDeletingEvent, object itemDeleting)
+              : base(itemDeletingEvent)
+        {
+            _item = itemDeleting;
+        }
+
+        #endregion Public Constructors
     }
-
-    #region Property Item
-
-    public object Item
-    {
-      get
-      {
-        return _item;
-      }
-    }
-
-    #endregion
-
-    #endregion
-  }
 }

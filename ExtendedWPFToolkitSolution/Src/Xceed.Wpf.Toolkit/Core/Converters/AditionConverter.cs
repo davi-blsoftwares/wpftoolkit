@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,32 +15,33 @@
   ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 
 namespace Xceed.Wpf.Toolkit.Core.Converters
 {
-  public class AdditionConverter : IValueConverter
-  {
-    public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
+    public class AdditionConverter : IValueConverter
     {
-      if( ( value != null ) && ( parameter != null ) )
-      {
-        var firstValue = ( double )value;
-        var secondValue = double.Parse( parameter as string );
+        #region Public Methods
 
-        return firstValue + secondValue;
-      }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((value != null) && (parameter != null))
+            {
+                var firstValue = (double)value;
+                var secondValue = double.Parse(parameter as string);
 
-      return 0d;
+                return firstValue + secondValue;
+            }
+
+            return 0d;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion Public Methods
     }
-
-    public object ConvertBack( object value, Type targetType, object parameter, CultureInfo culture )
-    {
-      throw new NotImplementedException();
-    }
-  }
 }

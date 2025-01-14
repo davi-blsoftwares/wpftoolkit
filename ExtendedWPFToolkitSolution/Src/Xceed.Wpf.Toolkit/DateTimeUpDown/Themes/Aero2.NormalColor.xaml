@@ -23,7 +23,6 @@
         <ContentControl Content="{Binding}" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Focusable="False" Margin="0,0,3,0" />
     </DataTemplate>
 
-
     <!-- =============================================================================== -->
     <!-- DateTimeUpDown                                                                  -->
     <!-- =============================================================================== -->
@@ -34,7 +33,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
-        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="TextAlignment" Value="Right" />
         <Setter Property="WatermarkTemplate" Value="{StaticResource DefaultWatermarkTemplate}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -52,15 +51,15 @@
                                     AllowSpin="{TemplateBinding AllowSpin}"
                                     ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
                         <local:WatermarkTextBox x:Name="PART_TextBox"
-                                          BorderThickness="0" 
+                                          BorderThickness="0"
                                           Background="Transparent"
                                           ContextMenu="{TemplateBinding ContextMenu}"
-                                          FontFamily="{TemplateBinding FontFamily}" 
-                                          FontSize="{TemplateBinding FontSize}" 
+                                          FontFamily="{TemplateBinding FontFamily}"
+                                          FontSize="{TemplateBinding FontSize}"
                                           FontStretch="{TemplateBinding FontStretch}"
-                                          FontStyle="{TemplateBinding FontStyle}" 
-                                          FontWeight="{TemplateBinding FontWeight}" 
-                                          Foreground="{TemplateBinding Foreground}" 
+                                          FontStyle="{TemplateBinding FontStyle}"
+                                          FontWeight="{TemplateBinding FontWeight}"
+                                          Foreground="{TemplateBinding Foreground}"
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                           IsUndoEnabled="{Binding IsUndoEnabled, RelativeSource={RelativeSource TemplatedParent}}"
@@ -69,7 +68,7 @@
                                           AcceptsReturn="False"
                                           Padding="{TemplateBinding Padding}"
                                           TextAlignment="{TemplateBinding TextAlignment}"
-                                          TextWrapping="NoWrap" 
+                                          TextWrapping="NoWrap"
                                           TabIndex="{TemplateBinding TabIndex}"
                                           Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}"
                                           Watermark="{TemplateBinding Watermark}"
@@ -79,32 +78,32 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes:ResourceKeys.ControlMouseOverBorderKey}}" />
                         </Trigger>
-                     <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                           <Condition Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}"
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}"
                                       Value="False" />
-                           <Condition Binding="{Binding AllowTextInput, RelativeSource={RelativeSource Self}}"
+                                <Condition Binding="{Binding AllowTextInput, RelativeSource={RelativeSource Self}}"
                                       Value="False" />
-                        </MultiDataTrigger.Conditions>
-                        <Setter Property="IsReadOnly"
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsReadOnly"
                                 Value="True"
                                 TargetName="PART_TextBox" />
-                     </MultiDataTrigger>
-                     <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}"
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}"
                                   Value="True">
-                        <Setter Property="IsReadOnly"
+                            <Setter Property="IsReadOnly"
                                 Value="True"
                                 TargetName="PART_TextBox" />
-                     </DataTrigger>
-                     <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                        </DataTrigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes:ResourceKeys.ControlSelectedBorderKey}}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                          <Setter TargetName="PART_TextBox" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_TextBox}" />
-                      </Trigger>
+                            <Setter TargetName="PART_TextBox" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_TextBox}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -112,5 +111,4 @@
     </Style>
 
     <Style TargetType="{x:Type local:DateTimeUpDown}" BasedOn="{StaticResource DateTimeUpDown}" />
-
 </ResourceDictionary>

@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,35 +18,35 @@ using System;
 
 namespace Xceed.Wpf.Toolkit
 {
-  [CLSCompliantAttribute( false )]
-  public class SByteUpDown : CommonNumericUpDown<sbyte>
-  {
-    #region Constructors
-
-    static SByteUpDown()
+    [CLSCompliantAttribute(false)]
+    public class SByteUpDown : CommonNumericUpDown<sbyte>
     {
-      UpdateMetadata( typeof( SByteUpDown ), ( sbyte )1, sbyte.MinValue, sbyte.MaxValue );
+        #region Public Constructors
+
+        static SByteUpDown()
+        {
+            UpdateMetadata(typeof(SByteUpDown), (sbyte)1, sbyte.MinValue, sbyte.MaxValue);
+        }
+
+        public SByteUpDown()
+          : base(sbyte.TryParse, Decimal.ToSByte, (v1, v2) => v1 < v2, (v1, v2) => v1 > v2)
+        {
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override sbyte DecrementValue(sbyte value, sbyte increment)
+        {
+            return (sbyte)(value - increment);
+        }
+
+        protected override sbyte IncrementValue(sbyte value, sbyte increment)
+        {
+            return (sbyte)(value + increment);
+        }
+
+        #endregion Protected Methods
     }
-
-    public SByteUpDown()
-      : base( sbyte.TryParse, Decimal.ToSByte, ( v1, v2 ) => v1 < v2, ( v1, v2 ) => v1 > v2 )
-    {
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-    protected override sbyte IncrementValue( sbyte value, sbyte increment )
-    {
-      return ( sbyte )( value + increment );
-    }
-
-    protected override sbyte DecrementValue( sbyte value, sbyte increment )
-    {
-      return ( sbyte )( value - increment );
-    }
-
-    #endregion //Base Class Overrides
-  }
 }

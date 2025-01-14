@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,16 +18,24 @@ using System.Windows.Input;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public static class CalculatorCommands
-  {
-    private static RoutedCommand _calculatorButtonClickCommand = new RoutedCommand();
-
-    public static RoutedCommand CalculatorButtonClick
+    public static class CalculatorCommands
     {
-      get
-      {
-        return _calculatorButtonClickCommand;
-      }
+        #region Private Fields
+
+        private static RoutedCommand _calculatorButtonClickCommand = new RoutedCommand();
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public static RoutedCommand CalculatorButtonClick
+        {
+            get
+            {
+                return _calculatorButtonClickCommand;
+            }
+        }
+
+        #endregion Public Properties
     }
-  }
 }

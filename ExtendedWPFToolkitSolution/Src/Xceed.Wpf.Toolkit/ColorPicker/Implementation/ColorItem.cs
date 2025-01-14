@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,36 +18,49 @@ using System.Windows.Media;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class ColorItem
-  {
-    public Color? Color
+    public class ColorItem
     {
-      get;
-      set;
-    }
-    public string Name
-    {
-      get;
-      set;
-    }
+        #region Public Properties
 
-    public ColorItem( Color? color, string name )
-    {
-      Color = color;
-      Name = name;
-    }
+        public Color? Color
+        {
+            get;
+            set;
+        }
 
-    public override bool Equals(object obj)
-    {
-      var ci = obj as ColorItem;
-      if (ci == null)
-          return false;
-      return ( ci.Color.Equals( Color ) && ci.Name.Equals( Name ) );
-    }
+        public string Name
+        {
+            get;
+            set;
+        }
 
-    public override int GetHashCode()
-    {
-      return this.Color.GetHashCode() ^ this.Name.GetHashCode();
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public ColorItem(Color? color, string name)
+        {
+            Color = color;
+            Name = name;
+        }
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        public override bool Equals(object obj)
+        {
+            var ci = obj as ColorItem;
+            if (ci == null)
+                return false;
+            return (ci.Color.Equals(Color) && ci.Name.Equals(Name));
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Color.GetHashCode() ^ this.Name.GetHashCode();
+        }
+
+        #endregion Public Methods
     }
-  }
 }

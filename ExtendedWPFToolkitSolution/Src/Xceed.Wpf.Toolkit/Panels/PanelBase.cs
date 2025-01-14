@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,14 +18,14 @@ using System.Windows.Controls;
 
 namespace Xceed.Wpf.Toolkit.Panels
 {
-  public abstract class PanelBase : Panel
-  {
-    #region Constructor
-
-    public PanelBase()
+    public abstract class PanelBase : Panel
     {
-    }
+        #region Public Constructors
 
-    #endregion
-  }
+        public PanelBase()
+        {
+        }
+
+        #endregion Public Constructors
+    }
 }

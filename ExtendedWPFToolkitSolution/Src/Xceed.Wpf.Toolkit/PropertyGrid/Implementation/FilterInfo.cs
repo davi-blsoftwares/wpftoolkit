@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,15 +15,16 @@
   ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid
 {
-  internal struct FilterInfo
-  {
-    public string InputString;
-    public Predicate<object> Predicate;
-  }
+    internal struct FilterInfo
+    {
+        #region Public Fields
+
+        public string InputString;
+        public Predicate<object> Predicate;
+
+        #endregion Public Fields
+    }
 }

@@ -19,148 +19,146 @@
                     xmlns:local="clr-namespace:Xceed.Wpf.Toolkit"
                     xmlns:themes="clr-namespace:Xceed.Wpf.Toolkit.Themes">
 
-
-  <!-- =============================================================================== -->
-  <!--  IconButton Style                                                               -->
-  <!-- =============================================================================== -->
-  <Style x:Key="FocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Margin="2"
+    <!-- =============================================================================== -->
+    <!--  IconButton Style                                                               -->
+    <!-- =============================================================================== -->
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2"
                      SnapsToDevicePixels="true"
                      Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
                      StrokeThickness="1"
                      StrokeDashArray="1 2" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <Style TargetType="{x:Type local:IconButton}">
-    <Setter Property="FocusVisualStyle"
+    <Style TargetType="{x:Type local:IconButton}">
+        <Setter Property="FocusVisualStyle"
             Value="{StaticResource FocusVisual}" />
-    <Setter Property="Background"
+        <Setter Property="Background"
             Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonNormalBackgroundKey}}" />
-    <Setter Property="BorderBrush"
+        <Setter Property="BorderBrush"
             Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonNormalOuterBorderKey}}" />
-    <Setter Property="Foreground"
+        <Setter Property="Foreground"
             Value="Black" />
-    <Setter Property="BorderThickness"
+        <Setter Property="BorderThickness"
             Value="1" />
-    <Setter Property="MouseOverForeground"
+        <Setter Property="MouseOverForeground"
             Value="Black" />
-    <Setter Property="MousePressedForeground"
+        <Setter Property="MousePressedForeground"
             Value="Black" />
-    <Setter Property="MouseOverBackground"
+        <Setter Property="MouseOverBackground"
             Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonMouseOverBackgroundKey}}" />
-    <Setter Property="MousePressedBackground"
+        <Setter Property="MousePressedBackground"
             Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonPressedBackgroundKey}}" />
-    <Setter Property="MouseOverBorderBrush"
+        <Setter Property="MouseOverBorderBrush"
             Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonMouseOverOuterBorderKey}}" />
-    <Setter Property="MousePressedBorderBrush"
+        <Setter Property="MousePressedBorderBrush"
             Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonPressedOuterBorderKey}}" />
-    <Setter Property="HorizontalContentAlignment"
+        <Setter Property="HorizontalContentAlignment"
             Value="Center" />
-    <Setter Property="VerticalContentAlignment"
+        <Setter Property="VerticalContentAlignment"
             Value="Center" />
-    <Setter Property="Padding"
+        <Setter Property="Padding"
             Value="1" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type local:IconButton}">
-          <Border x:Name="defaultBorder"
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:IconButton}">
+                    <Border x:Name="defaultBorder"
                   BorderThickness="1"
                   BorderBrush="Transparent">
-            <Border x:Name="border"
+                        <Border x:Name="border"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     Background="{TemplateBinding Background}"
                     SnapsToDevicePixels="True">
-              <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                     Margin="{TemplateBinding Padding}"
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition x:Name="firstColumn"
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="firstColumn"
                                     Width="Auto" />
-                  <ColumnDefinition x:Name="secondColumn"
+                                    <ColumnDefinition x:Name="secondColumn"
                                     Width="*" />
-                </Grid.ColumnDefinitions>
+                                </Grid.ColumnDefinitions>
 
-                <ContentControl x:Name="icon"
+                                <ContentControl x:Name="icon"
                                 Content="{TemplateBinding Icon}"
                                 VerticalAlignment="Center" />
-                <ContentPresenter x:Name="contentPresenter"
+                                <ContentPresenter x:Name="contentPresenter"
                                   Grid.Column="1"
                                   Focusable="False"
                                   RecognizesAccessKey="True"
                                   VerticalAlignment="Center" />
-              </Grid>
-            </Border>
-          </Border>
-          <ControlTemplate.Triggers>
-            <Trigger Property="IsDefaulted"
+                            </Grid>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted"
                      Value="True">
-              <Setter Property="BorderBrush"
+                            <Setter Property="BorderBrush"
                       TargetName="defaultBorder"
                       Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-            </Trigger>
-            <Trigger Property="IsMouseOver"
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
                      Value="True">
-              <Setter Property="TextElement.Foreground"
+                            <Setter Property="TextElement.Foreground"
                       TargetName="contentPresenter"
                       Value="{Binding MouseOverForeground, RelativeSource={RelativeSource TemplatedParent}}" />
-              <Setter Property="Background"
+                            <Setter Property="Background"
                       TargetName="border"
                       Value="{Binding MouseOverBackground, RelativeSource={RelativeSource TemplatedParent}}" />
-              <Setter Property="BorderBrush"
+                            <Setter Property="BorderBrush"
                       TargetName="border"
                       Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
-            </Trigger>
-            <Trigger Property="IsPressed"
+                        </Trigger>
+                        <Trigger Property="IsPressed"
                      Value="True">
-              <Setter Property="TextElement.Foreground"
+                            <Setter Property="TextElement.Foreground"
                       TargetName="contentPresenter"
                       Value="{Binding MousePressedForeground, RelativeSource={RelativeSource TemplatedParent}}" />
-              <Setter Property="Background"
+                            <Setter Property="Background"
                       TargetName="border"
                       Value="{Binding MousePressedBackground, RelativeSource={RelativeSource TemplatedParent}}" />
-              <Setter Property="BorderBrush"
+                            <Setter Property="BorderBrush"
                       TargetName="border"
                       Value="{Binding MousePressedBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
-            </Trigger>
-            <Trigger Property="IsEnabled"
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
                      Value="False">
-              <Setter TargetName="border"
+                            <Setter TargetName="border"
                       Property="BorderBrush"
                       Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonDisabledOuterBorderKey}}" />
-              <Setter TargetName="border"
+                            <Setter TargetName="border"
                       Property="Background"
                       Value="{DynamicResource {x:Static themes:ResourceKeys.ControlDisabledBackgroundKey}}" />
-              <Setter Property="TextElement.Foreground"
+                            <Setter Property="TextElement.Foreground"
                       TargetName="contentPresenter"
                       Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-            </Trigger>
-            <Trigger Property="IconLocation"
+                        </Trigger>
+                        <Trigger Property="IconLocation"
                      Value="Right">
-              <Setter Property="Width"
+                            <Setter Property="Width"
                       Value="*"
                       TargetName="firstColumn" />
-              <Setter Property="Width"
+                            <Setter Property="Width"
                       Value="Auto"
                       TargetName="secondColumn" />
-              <Setter Property="Grid.Column"
+                            <Setter Property="Grid.Column"
                       Value="1"
                       TargetName="icon" />
-              <Setter Property="Grid.Column"
+                            <Setter Property="Grid.Column"
                       Value="0"
                       TargetName="contentPresenter" />
-            </Trigger>
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

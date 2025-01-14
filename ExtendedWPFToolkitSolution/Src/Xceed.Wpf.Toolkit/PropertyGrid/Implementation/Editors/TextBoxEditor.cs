@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,41 +16,46 @@
 
 using System.Windows.Controls;
 using System.Windows;
+
 #if !VS2008
+
 using System.ComponentModel.DataAnnotations;
+
 #endif
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Editors
 {
-  public class TextBoxEditor : TypeEditor<WatermarkTextBox>
-  {
-    protected override WatermarkTextBox CreateEditor()
+    public class TextBoxEditor : TypeEditor<WatermarkTextBox>
     {
-      return new PropertyGridEditorTextBox();
-    }
+        protected override WatermarkTextBox CreateEditor()
+        {
+            return new PropertyGridEditorTextBox();
+        }
 
 #if !VS2008
-    protected override void SetControlProperties( PropertyItem propertyItem )
-    {
-      var displayAttribute = PropertyGridUtilities.GetAttribute<DisplayAttribute>( propertyItem.PropertyDescriptor );
-      if( displayAttribute != null )
-      {
-        this.Editor.Watermark = displayAttribute.GetPrompt();
-      }
-    }
+
+        protected override void SetControlProperties(PropertyItem propertyItem)
+        {
+            var displayAttribute = PropertyGridUtilities.GetAttribute<DisplayAttribute>(propertyItem.PropertyDescriptor);
+            if (displayAttribute != null)
+            {
+                this.Editor.Watermark = displayAttribute.GetPrompt();
+            }
+        }
+
 #endif
 
-    protected override void SetValueDependencyProperty()
-    {
-      ValueProperty = TextBox.TextProperty;
+        protected override void SetValueDependencyProperty()
+        {
+            ValueProperty = TextBox.TextProperty;
+        }
     }
-  }
 
-  public class PropertyGridEditorTextBox : WatermarkTextBox
-  {
-    static PropertyGridEditorTextBox()
+    public class PropertyGridEditorTextBox : WatermarkTextBox
     {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( PropertyGridEditorTextBox ), new FrameworkPropertyMetadata( typeof( PropertyGridEditorTextBox ) ) );
+        static PropertyGridEditorTextBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(PropertyGridEditorTextBox), new FrameworkPropertyMetadata(typeof(PropertyGridEditorTextBox)));
+        }
     }
-  }
 }

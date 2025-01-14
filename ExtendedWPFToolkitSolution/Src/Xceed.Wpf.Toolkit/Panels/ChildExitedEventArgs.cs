@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,29 +18,33 @@ using System.Windows;
 
 namespace Xceed.Wpf.Toolkit.Panels
 {
-  public class ChildExitedEventArgs : RoutedEventArgs
-  {
-    #region Constructors
-
-    public ChildExitedEventArgs( UIElement child )
+    public class ChildExitedEventArgs : RoutedEventArgs
     {
-      _child = child;
+        #region Private Fields
+
+        private readonly UIElement _child;
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public UIElement Child
+        {
+            get
+            {
+                return _child;
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public ChildExitedEventArgs(UIElement child)
+        {
+            _child = child;
+        }
+
+        #endregion Public Constructors
     }
-
-    #endregion
-
-    #region Child Property
-
-    public UIElement Child
-    {
-      get
-      {
-        return _child;
-      }
-    }
-
-    private readonly UIElement _child;
-
-    #endregion
-  }
 }

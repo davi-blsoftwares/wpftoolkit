@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,31 +19,39 @@ using System.ComponentModel;
 
 namespace Xceed.Wpf.Toolkit.Media.Animation
 {
-  [TypeConverter( typeof( IterativeEquationConverter ) )]
-  public class IterativeEquation<T>
-  {
-    #region Constructors
-
-    public IterativeEquation( IterativeAnimationEquationDelegate<T> equation )
+    [TypeConverter(typeof(IterativeEquationConverter))]
+    public class IterativeEquation<T>
     {
-      _equation = equation;
+        #region Private Fields
+
+        private readonly IterativeAnimationEquationDelegate<T> _equation;
+
+        #endregion Private Fields
+
+        #region Public Constructors
+
+        public IterativeEquation(IterativeAnimationEquationDelegate<T> equation)
+        {
+            _equation = equation;
+        }
+
+        #endregion Public Constructors
+
+        #region Internal Constructors
+
+        internal IterativeEquation()
+        {
+        }
+
+        #endregion Internal Constructors
+
+        #region Public Methods
+
+        public virtual T Evaluate(TimeSpan currentTime, T from, T to, TimeSpan duration)
+        {
+            return _equation(currentTime, from, to, duration);
+        }
+
+        #endregion Public Methods
     }
-
-    internal IterativeEquation()
-    {
-    }
-
-    #endregion
-
-    public virtual T Evaluate( TimeSpan currentTime, T from, T to, TimeSpan duration )
-    {
-      return _equation( currentTime, from, to, duration );
-    }
-
-    #region Private Fields
-
-    private readonly IterativeAnimationEquationDelegate<T> _equation;
-
-    #endregion
-  }
 }

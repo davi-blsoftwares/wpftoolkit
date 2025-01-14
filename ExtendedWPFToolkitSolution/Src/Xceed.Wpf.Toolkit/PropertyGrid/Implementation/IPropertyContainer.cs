@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,44 +14,32 @@
 
   ***********************************************************************************/
 
-
-using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Collections;
 using System.ComponentModel;
-using System.Windows.Data;
-using System;
 using System.Windows;
+
 namespace Xceed.Wpf.Toolkit.PropertyGrid
 {
-  internal interface IPropertyContainer
-  {
+    internal interface IPropertyContainer
+    {
+        #region Public Properties
 
+        bool AutoGenerateProperties { get; }
+        ContainerHelperBase ContainerHelper { get; }
 
+        EditorDefinitionCollection EditorDefinitions { get; }
+        FilterInfo FilterInfo { get; }
+        bool HideInheritedProperties { get; }
+        bool IsCategorized { get; }
+        bool IsSortedAlphabetically { get; }
+        Style PropertyContainerStyle { get; }
+        PropertyDefinitionCollection PropertyDefinitions { get; }
 
+        #endregion Public Properties
 
+        #region Public Methods
 
+        bool? IsPropertyVisible(PropertyDescriptor pd);
 
-
-    ContainerHelperBase ContainerHelper { get; }
-
-    Style PropertyContainerStyle { get; }
-
-    EditorDefinitionCollection EditorDefinitions { get; }
-
-    PropertyDefinitionCollection PropertyDefinitions { get; }
-
-    bool IsCategorized { get; }
-
-    bool IsSortedAlphabetically { get; }
-
-    bool AutoGenerateProperties { get; }
-
-    bool HideInheritedProperties { get; }
-
-    FilterInfo FilterInfo { get; }
-
-    bool? IsPropertyVisible( PropertyDescriptor pd );
-
-  }
+        #endregion Public Methods
+    }
 }

@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,59 +15,56 @@
   ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Xceed.Wpf.Toolkit.Core.Input
 {
-  public delegate void InputValidationErrorEventHandler( object sender, InputValidationErrorEventArgs e );
+    public delegate void InputValidationErrorEventHandler(object sender, InputValidationErrorEventArgs e);
 
-  public class InputValidationErrorEventArgs : EventArgs
-  {
-    #region Constructors
-
-    public InputValidationErrorEventArgs( Exception e )
+    public class InputValidationErrorEventArgs : EventArgs
     {
-      Exception = e;
+        #region Private Fields
+
+        private bool _throwException;
+
+        private Exception exception;
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public Exception Exception
+        {
+            get
+            {
+                return exception;
+            }
+            private set
+            {
+                exception = value;
+            }
+        }
+
+        public bool ThrowException
+        {
+            get
+            {
+                return _throwException;
+            }
+            set
+            {
+                _throwException = value;
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public InputValidationErrorEventArgs(Exception e)
+        {
+            Exception = e;
+        }
+
+        #endregion Public Constructors
     }
-
-    #endregion
-
-    #region Exception Property
-
-    public Exception Exception
-    {
-      get
-      {
-        return exception;
-      }
-      private set
-      {
-        exception = value;
-      }
-    }
-
-    private Exception exception;
-
-    #endregion
-
-    #region ThrowException Property
-
-    public bool ThrowException
-    {
-      get
-      {
-        return _throwException;
-      }
-      set
-      {
-        _throwException = value;
-      }
-    }
-
-    private bool _throwException;
-
-    #endregion
-  }
 }

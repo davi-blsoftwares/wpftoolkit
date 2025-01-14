@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -20,18 +20,22 @@ using System.Windows.Data;
 
 namespace Xceed.Wpf.Toolkit.Core.Converters
 {
-  public class ColorModeToTabItemSelectedConverter : IValueConverter
-  {
-    public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
+    public class ColorModeToTabItemSelectedConverter : IValueConverter
     {
-      var colorMode = ( ColorMode )value;
-      return (colorMode == ColorMode.ColorPalette) ? 0 : 1;
-    }
+        #region Public Methods
 
-    public object ConvertBack( object value, Type targetType, object parameter, CultureInfo culture )
-    {
-      var index = ( int )value;
-      return ( index == 0 ) ? ColorMode.ColorPalette : ColorMode.ColorCanvas;
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var colorMode = (ColorMode)value;
+            return (colorMode == ColorMode.ColorPalette) ? 0 : 1;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var index = (int)value;
+            return (index == 0) ? ColorMode.ColorPalette : ColorMode.ColorCanvas;
+        }
+
+        #endregion Public Methods
     }
-  }
 }

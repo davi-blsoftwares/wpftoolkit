@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,16 +15,15 @@
   ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Xceed.Wpf.Toolkit.Core.Converters
 {
     public class ThicknessToDoubleConverter : IValueConverter
     {
+        #region Public Methods
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             double thickness = 1.0;
@@ -44,5 +43,7 @@ namespace Xceed.Wpf.Toolkit.Core.Converters
 
             return new Thickness(thickness);
         }
+
+        #endregion Public Methods
     }
 }

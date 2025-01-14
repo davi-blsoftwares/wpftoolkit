@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,24 +19,32 @@ using System.Windows;
 
 namespace Xceed.Wpf.Toolkit.Core.Utilities
 {
-  internal static class PointHelper
-  {
-    public static double DistanceBetween( Point p1, Point p2 )
+    internal static class PointHelper
     {
-      return Math.Sqrt( Math.Pow( p1.X - p2.X, 2 ) + Math.Pow( p1.Y - p2.Y, 2 ) );
-    }
+        #region Public Properties
 
-    public static Point Empty
-    {
-      get
-      {
-        return new Point( double.NaN, double.NaN );
-      }
-    }
+        public static Point Empty
+        {
+            get
+            {
+                return new Point(double.NaN, double.NaN);
+            }
+        }
 
-    public static bool IsEmpty( Point point )
-    {
-      return DoubleHelper.IsNaN( point.X ) && DoubleHelper.IsNaN( point.Y );
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public static double DistanceBetween(Point p1, Point p2)
+        {
+            return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+        }
+
+        public static bool IsEmpty(Point point)
+        {
+            return DoubleHelper.IsNaN(point.X) && DoubleHelper.IsNaN(point.Y);
+        }
+
+        #endregion Public Methods
     }
-  }
 }

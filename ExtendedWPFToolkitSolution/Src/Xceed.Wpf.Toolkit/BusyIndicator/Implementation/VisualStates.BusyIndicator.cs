@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,36 +16,40 @@
 
 namespace Xceed.Wpf.Toolkit
 {
-  internal static partial class VisualStates
-  {
-    /// <summary>
-    /// Busyness group name.
-    /// </summary>
-    public const string GroupBusyStatus = "BusyStatusStates";
+    internal static partial class VisualStates
+    {
+        #region Public Fields
 
-    /// <summary>
-    /// Busy state for BusyIndicator.
-    /// </summary>
-    public const string StateBusy = "Busy";
+        /// <summary>
+        /// Busyness group name.
+        /// </summary>
+        public const string GroupBusyStatus = "BusyStatusStates";
 
-    /// <summary>
-    /// Idle state for BusyIndicator.
-    /// </summary>
-    public const string StateIdle = "Idle";
+        /// <summary>
+        /// BusyDisplay group.
+        /// </summary>
+        public const string GroupVisibility = "VisibilityStates";
 
-    /// <summary>
-    /// BusyDisplay group.
-    /// </summary>
-    public const string GroupVisibility = "VisibilityStates";
+        /// <summary>
+        /// Busy state for BusyIndicator.
+        /// </summary>
+        public const string StateBusy = "Busy";
 
-    /// <summary>
-    /// Visible state name for BusyIndicator.
-    /// </summary>
-    public const string StateVisible = "Visible";
+        /// <summary>
+        /// Hidden state name for BusyIndicator.
+        /// </summary>
+        public const string StateHidden = "Hidden";
 
-    /// <summary>
-    /// Hidden state name for BusyIndicator.
-    /// </summary>
-    public const string StateHidden = "Hidden";
-  }
+        /// <summary>
+        /// Idle state for BusyIndicator.
+        /// </summary>
+        public const string StateIdle = "Idle";
+
+        /// <summary>
+        /// Visible state name for BusyIndicator.
+        /// </summary>
+        public const string StateVisible = "Visible";
+
+        #endregion Public Fields
+    }
 }

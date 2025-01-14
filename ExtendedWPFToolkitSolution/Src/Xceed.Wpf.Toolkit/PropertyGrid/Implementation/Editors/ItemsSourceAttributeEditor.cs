@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,50 +19,66 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Editors
 {
-  public class ItemsSourceAttributeEditor : TypeEditor<System.Windows.Controls.ComboBox>
-  {
-    private readonly ItemsSourceAttribute _attribute;
-
-    public ItemsSourceAttributeEditor( ItemsSourceAttribute attribute )
+    public class ItemsSourceAttributeEditor : TypeEditor<System.Windows.Controls.ComboBox>
     {
-      _attribute = attribute;
-    }
+        #region Private Fields
 
-    protected override void SetValueDependencyProperty()
-    {
-      ValueProperty = System.Windows.Controls.ComboBox.SelectedValueProperty;
-    }
+        private readonly ItemsSourceAttribute _attribute;
 
-    protected override System.Windows.Controls.ComboBox CreateEditor()
-    {
-      return new PropertyGridEditorComboBox();
-    }
+        #endregion Private Fields
 
-    protected override void ResolveValueBinding( PropertyItem propertyItem )
-    {
-      SetItemsSource();
-      base.ResolveValueBinding( propertyItem );
-    }
+        #region Public Constructors
 
-    protected override void SetControlProperties( PropertyItem propertyItem )
-    {
-      Editor.DisplayMemberPath = "DisplayName";
-      Editor.SelectedValuePath = "Value";
-      if( propertyItem != null )
-      {
-        Editor.IsEnabled = !propertyItem.IsReadOnly;
-      }
-    }
+        public ItemsSourceAttributeEditor(ItemsSourceAttribute attribute)
+        {
+            _attribute = attribute;
+        }
 
-    private void SetItemsSource()
-    {
-      Editor.ItemsSource = CreateItemsSource();
-    }
+        #endregion Public Constructors
 
-    private System.Collections.IEnumerable CreateItemsSource()
-    {
-      var instance = Activator.CreateInstance( _attribute.Type );
-      return ( instance as IItemsSource ).GetValues();
+        #region Protected Methods
+
+        protected override System.Windows.Controls.ComboBox CreateEditor()
+        {
+            return new PropertyGridEditorComboBox();
+        }
+
+        protected override void ResolveValueBinding(PropertyItem propertyItem)
+        {
+            SetItemsSource();
+            base.ResolveValueBinding(propertyItem);
+        }
+
+        protected override void SetControlProperties(PropertyItem propertyItem)
+        {
+            Editor.DisplayMemberPath = "DisplayName";
+            Editor.SelectedValuePath = "Value";
+            if (propertyItem != null)
+            {
+                Editor.IsEnabled = !propertyItem.IsReadOnly;
+            }
+        }
+
+        protected override void SetValueDependencyProperty()
+        {
+            ValueProperty = System.Windows.Controls.ComboBox.SelectedValueProperty;
+        }
+
+        #endregion Protected Methods
+
+        #region Private Methods
+
+        private System.Collections.IEnumerable CreateItemsSource()
+        {
+            var instance = Activator.CreateInstance(_attribute.Type);
+            return (instance as IItemsSource).GetValues();
+        }
+
+        private void SetItemsSource()
+        {
+            Editor.ItemsSource = CreateItemsSource();
+        }
+
+        #endregion Private Methods
     }
-  }
 }

@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,10 +16,10 @@
 
 namespace Xceed.Wpf.Toolkit
 {
-  public enum WizardPageType
-  {
-    Blank,
-    Exterior,
-    Interior
-  }
+    public enum WizardPageType
+    {
+        Blank,
+        Exterior,
+        Interior
+    }
 }

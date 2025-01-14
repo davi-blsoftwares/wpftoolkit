@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,5 +18,5 @@ using System;
 
 namespace Xceed.Wpf.Toolkit.Media.Animation
 {
-  public delegate T IterativeAnimationEquationDelegate<T>( TimeSpan currentTime, T from, T to, TimeSpan duration );
+    public delegate T IterativeAnimationEquationDelegate<T>(TimeSpan currentTime, T from, T to, TimeSpan duration);
 }

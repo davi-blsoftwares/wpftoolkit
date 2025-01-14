@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,35 +18,35 @@ using System;
 
 namespace Xceed.Wpf.Toolkit
 {
-  [CLSCompliantAttribute( false )]
-  public class UShortUpDown : CommonNumericUpDown<ushort>
-  {
-    #region Constructors
-
-    static UShortUpDown()
+    [CLSCompliantAttribute(false)]
+    public class UShortUpDown : CommonNumericUpDown<ushort>
     {
-      UpdateMetadata( typeof( UShortUpDown ), ( ushort )1, ushort.MinValue, ushort.MaxValue );
+        #region Public Constructors
+
+        static UShortUpDown()
+        {
+            UpdateMetadata(typeof(UShortUpDown), (ushort)1, ushort.MinValue, ushort.MaxValue);
+        }
+
+        public UShortUpDown()
+          : base(ushort.TryParse, Decimal.ToUInt16, (v1, v2) => v1 < v2, (v1, v2) => v1 > v2)
+        {
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override ushort DecrementValue(ushort value, ushort increment)
+        {
+            return (ushort)(value - increment);
+        }
+
+        protected override ushort IncrementValue(ushort value, ushort increment)
+        {
+            return (ushort)(value + increment);
+        }
+
+        #endregion Protected Methods
     }
-
-    public UShortUpDown()
-      : base( ushort.TryParse, Decimal.ToUInt16, ( v1, v2 ) => v1 < v2, ( v1, v2 ) => v1 > v2 )
-    {
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-    protected override ushort IncrementValue( ushort value, ushort increment )
-    {
-      return ( ushort )( value + increment );
-    }
-
-    protected override ushort DecrementValue( ushort value, ushort increment )
-    {
-      return ( ushort )( value - increment );
-    }
-
-    #endregion //Base Class Overrides
-  }
 }

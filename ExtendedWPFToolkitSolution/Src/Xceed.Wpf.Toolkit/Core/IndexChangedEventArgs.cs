@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,20 +19,24 @@ using System.Windows;
 
 namespace Xceed.Wpf.Toolkit.Core
 {
-  public class IndexChangedEventArgs : PropertyChangedEventArgs<int>
-  {
-    #region Constructors
-
-    public IndexChangedEventArgs( RoutedEvent routedEvent, int oldIndex, int newIndex )
-      : base( routedEvent, oldIndex, newIndex )
+    public class IndexChangedEventArgs : PropertyChangedEventArgs<int>
     {
-    }
+        #region Public Constructors
 
-    #endregion
+        public IndexChangedEventArgs(RoutedEvent routedEvent, int oldIndex, int newIndex)
+      : base(routedEvent, oldIndex, newIndex)
+        {
+        }
 
-    protected override void InvokeEventHandler( Delegate genericHandler, object genericTarget )
-    {
-      ( ( IndexChangedEventHandler )genericHandler )( genericTarget, this );
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override void InvokeEventHandler(Delegate genericHandler, object genericTarget)
+        {
+            ((IndexChangedEventHandler)genericHandler)(genericTarget, this);
+        }
+
+        #endregion Protected Methods
     }
-  }
 }

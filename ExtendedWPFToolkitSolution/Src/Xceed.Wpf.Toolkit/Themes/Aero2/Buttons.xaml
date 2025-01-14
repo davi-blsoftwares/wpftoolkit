@@ -19,7 +19,7 @@
                     xmlns:themes="clr-namespace:Xceed.Wpf.Toolkit.Themes"
                     xmlns:chrome="clr-namespace:Xceed.Wpf.Toolkit.Chromes">
 
-    <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type themes:ResourceKeys}, ResourceId=SpinnerButtonStyleKey}" 
+    <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type themes:ResourceKeys}, ResourceId=SpinnerButtonStyleKey}"
            TargetType="RepeatButton">
         <Setter Property="Background" Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonNormalBackgroundKey}}" />
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes:ResourceKeys.ButtonNormalOuterBorderKey}}" />
@@ -30,8 +30,8 @@
                 <ControlTemplate TargetType="RepeatButton">
                     <Grid>
                         <chrome:ButtonChrome x:Name="Chrome"
-                                       BorderBrush="{TemplateBinding BorderBrush}" 
-                                       Background="{TemplateBinding Background}"                                                                  
+                                       BorderBrush="{TemplateBinding BorderBrush}"
+                                       Background="{TemplateBinding Background}"
                                        CornerRadius="{DynamicResource {x:Static themes:ResourceKeys.SpinButtonCornerRadiusKey}}"
                                        RenderEnabled="{TemplateBinding IsEnabled}"
                                        RenderMouseOver="{TemplateBinding IsMouseOver}"
@@ -47,5 +47,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

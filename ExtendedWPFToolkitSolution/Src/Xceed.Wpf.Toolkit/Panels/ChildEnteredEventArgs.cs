@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,44 +18,44 @@ using System.Windows;
 
 namespace Xceed.Wpf.Toolkit.Panels
 {
-  public class ChildEnteredEventArgs : RoutedEventArgs
-  {
-    #region Constructors
-
-    public ChildEnteredEventArgs( UIElement child, Rect arrangeRect )
+    public class ChildEnteredEventArgs : RoutedEventArgs
     {
-      _child = child;
-      _arrangeRect = arrangeRect;
+        #region Private Fields
+
+        private readonly Rect _arrangeRect;
+
+        private readonly UIElement _child;
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public Rect ArrangeRect
+        {
+            get
+            {
+                return _arrangeRect;
+            }
+        }
+
+        public UIElement Child
+        {
+            get
+            {
+                return _child;
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public ChildEnteredEventArgs(UIElement child, Rect arrangeRect)
+        {
+            _child = child;
+            _arrangeRect = arrangeRect;
+        }
+
+        #endregion Public Constructors
     }
-
-    #endregion
-
-    #region ArrangeRect Property
-
-    public Rect ArrangeRect
-    {
-      get
-      {
-        return _arrangeRect;
-      }
-    }
-
-    private readonly Rect _arrangeRect;
-
-    #endregion
-
-    #region Child Property
-
-    public UIElement Child
-    {
-      get
-      {
-        return _child;
-      }
-    }
-
-    private readonly UIElement _child;
-
-    #endregion
-  }
 }

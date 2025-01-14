@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,41 +18,50 @@ using System;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class TimeItem
-  {
-    public string Display
+    public class TimeItem
     {
-      get;
-      set;
-    }
-    public TimeSpan Time
-    {
-      get;
-      set;
-    }
+        #region Public Properties
 
-    public TimeItem( string display, TimeSpan time )
-    {
-      Display = display;
-      Time = time;
+        public string Display
+        {
+            get;
+            set;
+        }
+
+        public TimeSpan Time
+        {
+            get;
+            set;
+        }
+
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public TimeItem(string display, TimeSpan time)
+        {
+            Display = display;
+            Time = time;
+        }
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as TimeItem;
+            if (item != null)
+                return Time == item.Time;
+            else
+                return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Time.GetHashCode();
+        }
+
+        #endregion Public Methods
     }
-
-    #region Base Class Overrides
-
-    public override bool Equals( object obj )
-    {
-      var item = obj as TimeItem;
-      if( item != null )
-        return Time == item.Time;
-      else
-        return false;
-    }
-
-    public override int GetHashCode()
-    {
-      return Time.GetHashCode();
-    }
-
-    #endregion //Base Class Overrides
-  }
 }

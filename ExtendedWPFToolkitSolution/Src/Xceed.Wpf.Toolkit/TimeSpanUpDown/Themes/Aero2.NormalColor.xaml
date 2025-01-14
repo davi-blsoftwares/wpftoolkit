@@ -26,7 +26,6 @@
                         Margin="0,0,3,0" />
     </DataTemplate>
 
-
     <!-- =============================================================================== -->
     <!-- TimeSpanUpDown                                                                  -->
     <!-- =============================================================================== -->
@@ -47,11 +46,11 @@
                 Value="Center" />
         <Setter Property="TextAlignment"
                 Value="Right" />
-      <Setter Property="IsTabStop"
+        <Setter Property="IsTabStop"
               Value="False" />
-      <Setter Property="WatermarkTemplate"
+        <Setter Property="WatermarkTemplate"
                 Value="{StaticResource DefaultWatermarkTemplate}" />
-      <Setter Property="Template">
+        <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TimeSpanUpDown}">
                     <local:ButtonSpinner x:Name="PART_Spinner"
@@ -94,24 +93,24 @@
                             <Setter Property="BorderBrush"
                                     Value="{DynamicResource {x:Static themes:ResourceKeys.ControlMouseOverBorderKey}}" />
                         </Trigger>
-                     <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                           <Condition Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}"
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}"
                                       Value="False" />
-                           <Condition Binding="{Binding AllowTextInput, RelativeSource={RelativeSource Self}}"
+                                <Condition Binding="{Binding AllowTextInput, RelativeSource={RelativeSource Self}}"
                                       Value="False" />
-                        </MultiDataTrigger.Conditions>
-                        <Setter Property="IsReadOnly"
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsReadOnly"
                                 Value="True"
                                 TargetName="PART_TextBox" />
-                     </MultiDataTrigger>
-                     <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}"
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}"
                                   Value="True">
-                        <Setter Property="IsReadOnly"
+                            <Setter Property="IsReadOnly"
                                 Value="True"
                                 TargetName="PART_TextBox" />
-                     </DataTrigger>
-                     <Trigger Property="IsKeyboardFocusWithin"
+                        </DataTrigger>
+                        <Trigger Property="IsKeyboardFocusWithin"
                                  Value="True">
                             <Setter Property="BorderBrush"
                                     Value="{DynamicResource {x:Static themes:ResourceKeys.ControlSelectedBorderKey}}" />
@@ -135,5 +134,4 @@
 
     <Style TargetType="{x:Type local:TimeSpanUpDown}"
            BasedOn="{StaticResource TimeSpanUpDown}" />
-
 </ResourceDictionary>

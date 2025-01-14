@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,29 +14,32 @@
 
   ***********************************************************************************/
 
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using System.Collections;
 using Xceed.Wpf.Toolkit.Core.Utilities;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Editors
 {
-  public class FontComboBoxEditor : ComboBoxEditor
-  {
-    protected override IEnumerable CreateItemsSource( PropertyItem propertyItem )
+    public class FontComboBoxEditor : ComboBoxEditor
     {
-      if( propertyItem.PropertyType == typeof( FontFamily ) )
-        return FontUtilities.Families.OrderBy( x => x.Source);
-      else if( propertyItem.PropertyType == typeof( FontWeight ) )
-        return FontUtilities.Weights;
-      else if( propertyItem.PropertyType == typeof( FontStyle ) )
-        return FontUtilities.Styles;
-      else if( propertyItem.PropertyType == typeof( FontStretch ) )
-        return FontUtilities.Stretches;
+        #region Protected Methods
 
-      return null;
+        protected override IEnumerable CreateItemsSource(PropertyItem propertyItem)
+        {
+            if (propertyItem.PropertyType == typeof(FontFamily))
+                return FontUtilities.Families.OrderBy(x => x.Source);
+            else if (propertyItem.PropertyType == typeof(FontWeight))
+                return FontUtilities.Weights;
+            else if (propertyItem.PropertyType == typeof(FontStyle))
+                return FontUtilities.Styles;
+            else if (propertyItem.PropertyType == typeof(FontStretch))
+                return FontUtilities.Stretches;
+
+            return null;
+        }
+
+        #endregion Protected Methods
     }
-  }
 }

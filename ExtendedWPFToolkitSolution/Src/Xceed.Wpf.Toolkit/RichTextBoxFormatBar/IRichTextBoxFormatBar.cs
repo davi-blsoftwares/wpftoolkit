@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,28 +16,36 @@
 
 namespace Xceed.Wpf.Toolkit
 {
-  public interface IRichTextBoxFormatBar
-  {
-    /// <summary>
-    /// Represents the RichTextBox that will be the target for all text manipulations in the format bar.
-    /// </summary>
-    System.Windows.Controls.RichTextBox Target
+    public interface IRichTextBoxFormatBar
     {
-      get;
-      set;
-    }
+        #region Public Properties
 
-    /// <summary>
-    /// Represents the property that will be used to know if the formatBar should fade when mouse goes away.
-    /// </summary>
-    bool PreventDisplayFadeOut
-    {
-      get;
-    }
+        /// <summary>
+        /// Represents the property that will be used to know if the formatBar should fade when mouse goes away.
+        /// </summary>
+        bool PreventDisplayFadeOut
+        {
+            get;
+        }
 
-    /// <summary>
-    /// Represents the Method that will be used to update the format bar values based on the Selection.
-    /// </summary>
-    void Update();
-  }
+        /// <summary>
+        /// Represents the RichTextBox that will be the target for all text manipulations in the format bar.
+        /// </summary>
+        System.Windows.Controls.RichTextBox Target
+        {
+            get;
+            set;
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        /// <summary>
+        /// Represents the Method that will be used to update the format bar values based on the Selection.
+        /// </summary>
+        void Update();
+
+        #endregion Public Methods
+    }
 }

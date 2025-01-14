@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,52 +19,56 @@ using System.Windows;
 
 namespace Xceed.Wpf.Toolkit.Core
 {
-  public class PropertyChangedEventArgs<T> : RoutedEventArgs
-  {
-    #region Constructors
-
-    public PropertyChangedEventArgs( RoutedEvent Event, T oldValue, T newValue )
-      : base()
+    public class PropertyChangedEventArgs<T> : RoutedEventArgs
     {
-      _oldValue = oldValue;
-      _newValue = newValue;
-      this.RoutedEvent = Event;
+        #region Private Fields
+
+        private readonly T _newValue;
+
+        private readonly T _oldValue;
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public T NewValue
+        {
+            get
+            {
+                return _newValue;
+            }
+        }
+
+        public T OldValue
+        {
+            get
+            {
+                return _oldValue;
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public PropertyChangedEventArgs(RoutedEvent Event, T oldValue, T newValue)
+                                      : base()
+        {
+            _oldValue = oldValue;
+            _newValue = newValue;
+            this.RoutedEvent = Event;
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override void InvokeEventHandler(Delegate genericHandler, object genericTarget)
+        {
+            PropertyChangedEventHandler<T> handler = (PropertyChangedEventHandler<T>)genericHandler;
+            handler(genericTarget, this);
+        }
+
+        #endregion Protected Methods
     }
-
-    #endregion
-
-    #region NewValue Property
-
-    public T NewValue
-    {
-      get
-      {
-        return _newValue;
-      }
-    }
-
-    private readonly T _newValue;
-
-    #endregion
-
-    #region OldValue Property
-
-    public T OldValue
-    {
-      get
-      {
-        return _oldValue;
-      }
-    }
-
-    private readonly T _oldValue;
-
-    #endregion
-
-    protected override void InvokeEventHandler( Delegate genericHandler, object genericTarget )
-    {
-      PropertyChangedEventHandler<T> handler = ( PropertyChangedEventHandler<T> )genericHandler;
-      handler( genericTarget, this );
-    }
-  }
 }

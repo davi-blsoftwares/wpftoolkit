@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,20 +18,20 @@ using System;
 
 namespace Xceed.Wpf.Toolkit.Core
 {
-  public class InvalidContentException : Exception
-  {
-    #region Constructors
-
-    public InvalidContentException( string message )
-      : base( message )
+    public class InvalidContentException : Exception
     {
-    }
+        #region Public Constructors
 
-    public InvalidContentException( string message, Exception innerException )
-      : base( message, innerException )
-    {
-    }
+        public InvalidContentException(string message)
+      : base(message)
+        {
+        }
 
-    #endregion
-  }
+        public InvalidContentException(string message, Exception innerException)
+          : base(message, innerException)
+        {
+        }
+
+        #endregion Public Constructors
+    }
 }

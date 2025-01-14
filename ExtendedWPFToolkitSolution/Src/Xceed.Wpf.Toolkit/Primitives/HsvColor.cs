@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,17 +16,25 @@
 
 namespace Xceed.Wpf.Toolkit.Primitives
 {
-  internal struct HsvColor
-  {
-    public double H;
-    public double S;
-    public double V;
-
-    public HsvColor( double h, double s, double v )
+    internal struct HsvColor
     {
-      H = h;
-      S = s;
-      V = v;
+        #region Public Fields
+
+        public double H;
+        public double S;
+        public double V;
+
+        #endregion Public Fields
+
+        #region Public Constructors
+
+        public HsvColor(double h, double s, double v)
+        {
+            H = h;
+            S = s;
+            V = v;
+        }
+
+        #endregion Public Constructors
     }
-  }
 }

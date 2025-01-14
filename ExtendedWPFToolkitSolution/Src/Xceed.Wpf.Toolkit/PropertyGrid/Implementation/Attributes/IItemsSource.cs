@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,41 +18,54 @@ using System.Collections.Generic;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 {
-  public interface IItemsSource
-  {
-    ItemCollection GetValues();
-  }
+    public interface IItemsSource
+    {
+        #region Public Methods
 
-  public class Item
-  {
-    public string DisplayName
-    {
-      get;
-      set;
-    }
-    public object Value
-    {
-      get;
-      set;
-    }
-  }
+        ItemCollection GetValues();
 
-  public class ItemCollection : List<Item>
-  {
-    public void Add( object value )
-    {
-      Item item = new Item();
-      item.DisplayName = value.ToString();
-      item.Value = value;
-      base.Add( item );
+        #endregion Public Methods
     }
 
-    public void Add( object value, string displayName )
+    public class Item
     {
-      Item newItem = new Item();
-      newItem.DisplayName = displayName;
-      newItem.Value = value;
-      base.Add( newItem );
+        #region Public Properties
+
+        public string DisplayName
+        {
+            get;
+            set;
+        }
+
+        public object Value
+        {
+            get;
+            set;
+        }
+
+        #endregion Public Properties
     }
-  }
+
+    public class ItemCollection : List<Item>
+    {
+        #region Public Methods
+
+        public void Add(object value)
+        {
+            Item item = new Item();
+            item.DisplayName = value.ToString();
+            item.Value = value;
+            base.Add(item);
+        }
+
+        public void Add(object value, string displayName)
+        {
+            Item newItem = new Item();
+            newItem.DisplayName = displayName;
+            newItem.Value = value;
+            base.Add(newItem);
+        }
+
+        #endregion Public Methods
+    }
 }

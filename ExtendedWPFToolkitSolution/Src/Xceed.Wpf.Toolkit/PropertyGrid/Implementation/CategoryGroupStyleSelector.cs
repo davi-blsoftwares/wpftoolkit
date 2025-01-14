@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -22,44 +22,53 @@ using System.Windows.Media;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid
 {
-  public class CategoryGroupStyleSelector : StyleSelector
-  {
-    public Style SingleDefaultCategoryItemGroupStyle
+    public class CategoryGroupStyleSelector : StyleSelector
     {
-      get;
-      set;
+        #region Public Properties
+
+        public Style ItemGroupStyle
+        {
+            get;
+            set;
+        }
+
+        public Style SingleDefaultCategoryItemGroupStyle
+        {
+            get;
+            set;
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public override Style SelectStyle(object item, DependencyObject container)
+        {
+            var group = item as CollectionViewGroup;
+            // Category is not "Misc" => use regular ItemGroupStyle
+            if ((group.Name != null) && !group.Name.Equals(CategoryAttribute.Default.Category))
+                return this.ItemGroupStyle;
+
+            // Category is "Misc"
+            while (container != null)
+            {
+                container = VisualTreeHelper.GetParent(container);
+                if (container is ItemsControl)
+                    break;
+            }
+
+            var itemsControl = container as ItemsControl;
+            if (itemsControl != null)
+            {
+                // Category is "Misc" and this is the only category => use SingleDefaultCategoryItemGroupContainerStyle
+                if ((itemsControl.Items.Count > 0) && (itemsControl.Items.Groups.Count == 1))
+                    return this.SingleDefaultCategoryItemGroupStyle;
+            }
+
+            // Category is "Misc" and this is NOT the only category => use regular ItemGroupStyle
+            return this.ItemGroupStyle;
+        }
+
+        #endregion Public Methods
     }
-    public Style ItemGroupStyle
-    {
-      get;
-      set;
-    }
-
-    public override Style SelectStyle( object item, DependencyObject container )
-    {
-      var group = item as CollectionViewGroup;
-      // Category is not "Misc" => use regular ItemGroupStyle
-      if( (group.Name != null) && !group.Name.Equals( CategoryAttribute.Default.Category ) )
-        return this.ItemGroupStyle;
-
-      // Category is "Misc"
-      while( container != null )
-      {
-        container = VisualTreeHelper.GetParent( container );
-        if( container is ItemsControl )
-          break;
-      }
-
-      var itemsControl = container as ItemsControl;
-      if( itemsControl != null )
-      {
-        // Category is "Misc" and this is the only category => use SingleDefaultCategoryItemGroupContainerStyle
-        if( (itemsControl.Items.Count > 0) && (itemsControl.Items.Groups.Count == 1) )
-          return this.SingleDefaultCategoryItemGroupStyle;
-      }
-
-      // Category is "Misc" and this is NOT the only category => use regular ItemGroupStyle
-      return this.ItemGroupStyle;
-    }
-  }
 }

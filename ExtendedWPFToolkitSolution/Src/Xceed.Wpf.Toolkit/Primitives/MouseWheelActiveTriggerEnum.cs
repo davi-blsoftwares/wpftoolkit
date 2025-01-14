@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,21 +14,16 @@
 
   ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Xceed.Wpf.Toolkit.Primitives
 {
-  /// <summary>
-  /// Specify when the mouse wheel is active.
-  /// </summary>
-  public enum MouseWheelActiveTrigger
-  {
-    Focused,
-    FocusedMouseOver,
-    MouseOver,
-    Disabled
-  }
+    /// <summary>
+    /// Specify when the mouse wheel is active.
+    /// </summary>
+    public enum MouseWheelActiveTrigger
+    {
+        Focused,
+        FocusedMouseOver,
+        MouseOver,
+        Disabled
+    }
 }

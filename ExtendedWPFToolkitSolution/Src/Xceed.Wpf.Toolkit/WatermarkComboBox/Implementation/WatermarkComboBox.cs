@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,64 +19,54 @@ using System.Windows.Controls;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class WatermarkComboBox : ComboBox
-  {
-    #region Properties
-
-    #region Watermark
-
-    public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register( "Watermark", typeof( object ), typeof( WatermarkComboBox ), new UIPropertyMetadata( null ) );
-    public object Watermark
+    public class WatermarkComboBox : ComboBox
     {
-      get
-      {
-        return ( object )GetValue( WatermarkProperty );
-      }
-      set
-      {
-        SetValue( WatermarkProperty, value );
-      }
+        #region Public Fields
+
+        public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register("Watermark", typeof(object), typeof(WatermarkComboBox), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty WatermarkTemplateProperty = DependencyProperty.Register("WatermarkTemplate", typeof(DataTemplate), typeof(WatermarkComboBox), new UIPropertyMetadata(null));
+
+        #endregion Public Fields
+
+        #region Public Properties
+
+        public object Watermark
+        {
+            get
+            {
+                return (object)GetValue(WatermarkProperty);
+            }
+            set
+            {
+                SetValue(WatermarkProperty, value);
+            }
+        }
+
+        public DataTemplate WatermarkTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(WatermarkTemplateProperty);
+            }
+            set
+            {
+                SetValue(WatermarkTemplateProperty, value);
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        static WatermarkComboBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(WatermarkComboBox), new FrameworkPropertyMetadata(typeof(WatermarkComboBox)));
+        }
+
+        public WatermarkComboBox()
+        {
+        }
+
+        #endregion Public Constructors
     }
-
-    #endregion //Watermark
-
-    #region WatermarkTemplate
-
-    public static readonly DependencyProperty WatermarkTemplateProperty = DependencyProperty.Register( "WatermarkTemplate", typeof( DataTemplate ), typeof( WatermarkComboBox ), new UIPropertyMetadata( null ) );
-    public DataTemplate WatermarkTemplate
-    {
-      get
-      {
-        return ( DataTemplate )GetValue( WatermarkTemplateProperty );
-      }
-      set
-      {
-        SetValue( WatermarkTemplateProperty, value );
-      }
-    }
-
-    #endregion //WatermarkTemplate
-
-    #endregion //Properties
-
-    #region Constructors
-
-    static WatermarkComboBox()
-    {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( WatermarkComboBox ), new FrameworkPropertyMetadata( typeof( WatermarkComboBox ) ) );
-    }
-
-    public WatermarkComboBox()
-    {
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-
-
-
-    #endregion
-  }
 }

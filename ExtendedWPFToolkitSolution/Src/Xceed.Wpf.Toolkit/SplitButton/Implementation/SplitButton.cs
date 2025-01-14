@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,29 +19,32 @@ using System.Windows.Controls;
 
 namespace Xceed.Wpf.Toolkit
 {
-  [TemplatePart( Name = PART_ActionButton, Type = typeof( Button ) )]
-  public class SplitButton : DropDownButton
-  {
-    private const string PART_ActionButton = "PART_ActionButton";
-
-    #region Constructors
-
-    static SplitButton()
+    [TemplatePart(Name = PART_ActionButton, Type = typeof(Button))]
+    public class SplitButton : DropDownButton
     {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( SplitButton ), new FrameworkPropertyMetadata( typeof( SplitButton ) ) );
+        #region Private Fields
+
+        private const string PART_ActionButton = "PART_ActionButton";
+
+        #endregion Private Fields
+
+        #region Public Constructors
+
+        static SplitButton()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(SplitButton), new FrameworkPropertyMetadata(typeof(SplitButton)));
+        }
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            Button = GetTemplateChild(PART_ActionButton) as Button;
+        }
+
+        #endregion Public Methods
     }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-    public override void OnApplyTemplate()
-    {
-      base.OnApplyTemplate();
-      Button = GetTemplateChild( PART_ActionButton ) as Button;
-    }
-
-
-  #endregion //Base Class Overrides
-  }
 }

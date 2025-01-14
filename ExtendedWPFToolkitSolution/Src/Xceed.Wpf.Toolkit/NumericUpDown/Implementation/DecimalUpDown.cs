@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,38 +15,37 @@
   ***********************************************************************************/
 
 using System;
-using System.Windows;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class DecimalUpDown : CommonNumericUpDown<decimal>
-  {
-    #region Constructors
-
-    static DecimalUpDown()
+    public class DecimalUpDown : CommonNumericUpDown<decimal>
     {
-      UpdateMetadata( typeof( DecimalUpDown ), 1m, decimal.MinValue, decimal.MaxValue );
+        #region Public Constructors
+
+        static DecimalUpDown()
+        {
+            UpdateMetadata(typeof(DecimalUpDown), 1m, decimal.MinValue, decimal.MaxValue);
+        }
+
+        public DecimalUpDown()
+          : base(Decimal.TryParse, (d) => d, (v1, v2) => v1 < v2, (v1, v2) => v1 > v2)
+        {
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override decimal DecrementValue(decimal value, decimal increment)
+        {
+            return value - increment;
+        }
+
+        protected override decimal IncrementValue(decimal value, decimal increment)
+        {
+            return value + increment;
+        }
+
+        #endregion Protected Methods
     }
-
-    public DecimalUpDown()
-      : base( Decimal.TryParse, ( d ) => d, ( v1, v2 ) => v1 < v2, ( v1, v2 ) => v1 > v2 )
-    {
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-    protected override decimal IncrementValue( decimal value, decimal increment )
-    {
-      return value + increment;
-    }
-
-    protected override decimal DecrementValue( decimal value, decimal increment )
-    {
-      return value - increment;
-    }
-
-    #endregion //Base Class Overrides
-  }
 }

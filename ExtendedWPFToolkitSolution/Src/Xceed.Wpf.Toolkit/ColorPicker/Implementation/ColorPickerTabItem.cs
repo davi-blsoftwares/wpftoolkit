@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,28 +19,32 @@ using System.Windows.Input;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class ColorPickerTabItem : TabItem
-  {
-    protected override void OnMouseLeftButtonDown( MouseButtonEventArgs e )
+    public class ColorPickerTabItem : TabItem
     {
-      if( e.Source == this || !this.IsSelected )
-      {
-        e.Handled = true;
-        return;
-      }
+        #region Protected Methods
 
-      base.OnMouseLeftButtonDown( e );
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            if (e.Source == this || !this.IsSelected)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            base.OnMouseLeftButtonDown(e);
+        }
+
+        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
+        {
+            //Selection on Mouse Up
+            if (e.Source == this || !this.IsSelected)
+            {
+                base.OnMouseLeftButtonDown(e);
+            }
+
+            base.OnMouseLeftButtonUp(e);
+        }
+
+        #endregion Protected Methods
     }
-
-    protected override void OnMouseLeftButtonUp( MouseButtonEventArgs e )
-    {
-      //Selection on Mouse Up
-      if( e.Source == this || !this.IsSelected )
-      {
-        base.OnMouseLeftButtonDown( e );
-      }
-
-      base.OnMouseLeftButtonUp( e );
-    }
-  }
 }

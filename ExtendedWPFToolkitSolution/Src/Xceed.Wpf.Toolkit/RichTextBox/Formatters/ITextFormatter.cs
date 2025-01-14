@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,9 +18,14 @@ using System.Windows.Documents;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public interface ITextFormatter
-  {
-    string GetText( FlowDocument document );
-    void SetText( FlowDocument document, string text );
-  }
+    public interface ITextFormatter
+    {
+        #region Public Methods
+
+        string GetText(FlowDocument document);
+
+        void SetText(FlowDocument document, string text);
+
+        #endregion Public Methods
+    }
 }

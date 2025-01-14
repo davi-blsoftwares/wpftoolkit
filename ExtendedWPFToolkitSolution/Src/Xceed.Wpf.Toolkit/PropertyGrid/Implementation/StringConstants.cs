@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,43 +14,42 @@
 
   ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Xceed.Wpf.Toolkit.PropertyGrid
 {
-  public static class StringConstants
-  {
-    public static string Local
+    public static class StringConstants
     {
-      get { return "Local"; }
-    }
+        #region Public Properties
 
-    public static string Resource
-    {
-      get { return "Resource"; }
-    }
+        public static string Databinding
+        {
+            get { return "Databinding"; }
+        }
 
-    public static string Databinding
-    {
-      get { return "Databinding"; }
-    }
+        public static string Default
+        {
+            get { return "Default"; }
+        }
 
-    public static string Inheritance
-    {
-      get { return "Inheritance"; }
-    }
+        public static string Inheritance
+        {
+            get { return "Inheritance"; }
+        }
 
-    public static string StyleSetter
-    {
-      get { return "Style Setter"; }
-    }
+        public static string Local
+        {
+            get { return "Local"; }
+        }
 
-    public static string Default
-    {
-      get { return "Default"; }
+        public static string Resource
+        {
+            get { return "Resource"; }
+        }
+
+        public static string StyleSetter
+        {
+            get { return "Style Setter"; }
+        }
+
+        #endregion Public Properties
     }
-  }
 }

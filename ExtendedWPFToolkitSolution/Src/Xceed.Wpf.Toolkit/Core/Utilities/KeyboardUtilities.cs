@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,20 +14,20 @@
 
   ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
 namespace Xceed.Wpf.Toolkit.Core.Utilities
 {
-  internal class KeyboardUtilities
-  {
-    internal static bool IsKeyModifyingPopupState( KeyEventArgs e )
+    internal class KeyboardUtilities
     {
-      return ( ( ( ( Keyboard.Modifiers & ModifierKeys.Alt ) == ModifierKeys.Alt ) && ( ( e.SystemKey == Key.Down ) || ( e.SystemKey == Key.Up ) ) )
-            || ( e.Key == Key.F4 ) );
+        #region Internal Methods
+
+        internal static bool IsKeyModifyingPopupState(KeyEventArgs e)
+        {
+            return ((((Keyboard.Modifiers & ModifierKeys.Alt) == ModifierKeys.Alt) && ((e.SystemKey == Key.Down) || (e.SystemKey == Key.Up)))
+                  || (e.Key == Key.F4));
+        }
+
+        #endregion Internal Methods
     }
-  }
 }

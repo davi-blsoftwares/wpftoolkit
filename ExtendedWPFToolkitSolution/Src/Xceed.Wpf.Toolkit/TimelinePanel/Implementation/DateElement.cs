@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,109 +19,94 @@ using System.Windows;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public sealed class DateElement : IComparable<DateElement>
-  {
-    #region Members
-
-    internal Rect PlacementRectangle;
-
-    private readonly int _originalIndex;
-
-    #endregion //Members
-
-    #region Properties
-
-    #region Date
-
-    public DateTime Date
+    public sealed class DateElement : IComparable<DateElement>
     {
-      get
-      {
-        return _date;
-      }
+        #region Internal Fields
+
+        internal Rect PlacementRectangle;
+
+        #endregion Internal Fields
+
+        #region Private Fields
+
+        private readonly DateTime _date;
+        private readonly DateTime _dateEnd;
+        private readonly UIElement _element;
+        private readonly int _originalIndex;
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public DateTime Date
+        {
+            get
+            {
+                return _date;
+            }
+        }
+
+        public DateTime DateEnd
+        {
+            get
+            {
+                return _dateEnd;
+            }
+        }
+
+        public UIElement Element
+        {
+            get
+            {
+                return _element;
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Internal Constructors
+
+        internal DateElement(UIElement element, DateTime date, DateTime dateEnd)
+      : this(element, date, dateEnd, -1)
+        {
+        }
+
+        internal DateElement(UIElement element, DateTime date, DateTime dateEnd, int originalIndex)
+        {
+            _element = element;
+            _date = date;
+            _dateEnd = dateEnd;
+            _originalIndex = originalIndex;
+        }
+
+        #endregion Internal Constructors
+
+        #region Public Methods
+
+        public int CompareTo(DateElement d)
+        {
+            int dateCompare = this.Date.CompareTo(d.Date);
+            if (dateCompare != 0)
+                return dateCompare;
+
+            if (_originalIndex >= 0)
+                return (_originalIndex < d._originalIndex) ? -1 : 1;
+
+            return -this.DateEnd.CompareTo(d.DateEnd);
+        }
+
+        public override string ToString()
+        {
+            var fe = this.Element as FrameworkElement;
+            if (fe == null)
+                return base.ToString();
+
+            if (fe.Tag != null)
+                return fe.Tag.ToString();
+
+            return fe.Name;
+        }
+
+        #endregion Public Methods
     }
-
-    private readonly DateTime _date;
-
-    #endregion
-
-    #region DateEnd
-
-    public DateTime DateEnd
-    {
-      get
-      {
-        return _dateEnd;
-      }
-    }
-
-    private readonly DateTime _dateEnd;
-
-    #endregion
-
-    #region Element
-
-    public UIElement Element
-    {
-      get
-      {
-        return _element;
-      }
-    }
-
-    private readonly UIElement _element;
-
-    #endregion
-
-    #endregion
-
-    #region Constructors
-
-    internal DateElement( UIElement element, DateTime date, DateTime dateEnd )
-      : this( element, date, dateEnd, -1 )
-    {
-    }
-
-    internal DateElement( UIElement element, DateTime date, DateTime dateEnd, int originalIndex )
-    {
-      _element = element;
-      _date = date;
-      _dateEnd = dateEnd;
-      _originalIndex = originalIndex;
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-    public override string ToString()
-    {
-      var fe = this.Element as FrameworkElement;
-      if( fe == null )
-        return base.ToString();
-
-      if( fe.Tag != null )
-        return fe.Tag.ToString();
-
-      return fe.Name;
-    }
-
-    #endregion //Base Class Overrides
-
-    #region Methods
-
-    public int CompareTo( DateElement d )
-    {
-      int dateCompare = this.Date.CompareTo( d.Date );
-      if( dateCompare != 0 )
-        return dateCompare;
-
-      if( _originalIndex >= 0 )
-        return ( _originalIndex < d._originalIndex ) ? -1 : 1;
-
-      return -this.DateEnd.CompareTo( d.DateEnd );
-    }
-
-    #endregion
-  }
 }

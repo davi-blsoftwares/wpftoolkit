@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,29 +19,37 @@ using System.Windows.Controls;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Editors
 {
-  public class CheckBoxEditor : TypeEditor<CheckBox>
-  {
-    protected override CheckBox CreateEditor()
+    public class CheckBoxEditor : TypeEditor<CheckBox>
     {
-      return new PropertyGridEditorCheckBox();
+        #region Protected Methods
+
+        protected override CheckBox CreateEditor()
+        {
+            return new PropertyGridEditorCheckBox();
+        }
+
+        protected override void SetControlProperties(PropertyItem propertyItem)
+        {
+            Editor.Margin = new Thickness(5, 0, 0, 0);
+        }
+
+        protected override void SetValueDependencyProperty()
+        {
+            ValueProperty = CheckBox.IsCheckedProperty;
+        }
+
+        #endregion Protected Methods
     }
 
-    protected override void SetControlProperties( PropertyItem propertyItem )
+    public class PropertyGridEditorCheckBox : CheckBox
     {
-      Editor.Margin = new Thickness( 5, 0, 0, 0 );
-    }
+        #region Public Constructors
 
-    protected override void SetValueDependencyProperty()
-    {
-      ValueProperty = CheckBox.IsCheckedProperty;
-    }
-  }
+        static PropertyGridEditorCheckBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(PropertyGridEditorCheckBox), new FrameworkPropertyMetadata(typeof(PropertyGridEditorCheckBox)));
+        }
 
-  public class PropertyGridEditorCheckBox : CheckBox
-  {
-    static PropertyGridEditorCheckBox()
-    {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( PropertyGridEditorCheckBox ), new FrameworkPropertyMetadata( typeof( PropertyGridEditorCheckBox ) ) );
+        #endregion Public Constructors
     }
-  }
 }

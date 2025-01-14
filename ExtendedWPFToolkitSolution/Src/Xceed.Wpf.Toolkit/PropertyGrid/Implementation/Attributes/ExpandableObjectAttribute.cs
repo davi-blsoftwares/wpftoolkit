@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,22 +18,14 @@ using System;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 {
-  public class ExpandableObjectAttribute : Attribute
-  {
-    #region Constructors
-
-    public ExpandableObjectAttribute()
+    public class ExpandableObjectAttribute : Attribute
     {
+        #region Public Constructors
+
+        public ExpandableObjectAttribute()
+        {
+        }
+
+        #endregion Public Constructors
     }
-
-
-    #endregion
-
-    #region Properties
-
-
-
-
-    #endregion
-  }
 }

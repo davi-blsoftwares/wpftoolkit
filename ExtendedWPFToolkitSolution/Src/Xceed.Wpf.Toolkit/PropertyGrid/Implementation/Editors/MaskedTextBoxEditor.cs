@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,51 +15,59 @@
   ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Editors
 {
-  public class MaskedTextBoxEditor : TypeEditor<MaskedTextBox>
-  {
-    public string Mask
+    public class MaskedTextBoxEditor : TypeEditor<MaskedTextBox>
     {
-      get;
-      set;
+        #region Public Properties
+
+        public string Mask
+        {
+            get;
+            set;
+        }
+
+        public Type ValueDataType
+        {
+            get;
+            set;
+        }
+
+        #endregion Public Properties
+
+        #region Protected Methods
+
+        protected override MaskedTextBox CreateEditor()
+        {
+            return new PropertyGridEditorMaskedTextBox();
+        }
+
+        protected override void SetControlProperties(PropertyItem propertyItem)
+        {
+            Editor.BorderThickness = new System.Windows.Thickness(0);
+            this.Editor.ValueDataType = this.ValueDataType;
+            this.Editor.Mask = this.Mask;
+        }
+
+        protected override void SetValueDependencyProperty()
+        {
+            this.ValueProperty = MaskedTextBox.ValueProperty;
+        }
+
+        #endregion Protected Methods
     }
 
-    public Type ValueDataType
+    public class PropertyGridEditorMaskedTextBox : MaskedTextBox
     {
-      get;
-      set;
-    }
+        #region Public Constructors
 
-    protected override MaskedTextBox CreateEditor()
-    {
-      return new PropertyGridEditorMaskedTextBox();
-    }
+        static PropertyGridEditorMaskedTextBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(PropertyGridEditorMaskedTextBox), new FrameworkPropertyMetadata(typeof(PropertyGridEditorMaskedTextBox)));
+        }
 
-    protected override void SetControlProperties( PropertyItem propertyItem )
-    {
-      Editor.BorderThickness = new System.Windows.Thickness( 0 );
-      this.Editor.ValueDataType = this.ValueDataType;
-      this.Editor.Mask = this.Mask;
+        #endregion Public Constructors
     }
-
-    protected override void SetValueDependencyProperty()
-    {
-      this.ValueProperty = MaskedTextBox.ValueProperty;
-    }
-  }
-
-  public class PropertyGridEditorMaskedTextBox : MaskedTextBox
-  {
-    static PropertyGridEditorMaskedTextBox()
-    {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( PropertyGridEditorMaskedTextBox ), new FrameworkPropertyMetadata( typeof( PropertyGridEditorMaskedTextBox ) ) );
-    }
-  }
 }

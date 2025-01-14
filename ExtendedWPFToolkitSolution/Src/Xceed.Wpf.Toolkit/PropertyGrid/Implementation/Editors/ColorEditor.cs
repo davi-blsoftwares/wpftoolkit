@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,31 +15,41 @@
   ***********************************************************************************/
 
 using System.Windows;
+
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Editors
 {
-  public class ColorEditor : TypeEditor<ColorPicker>
-  {
-    protected override ColorPicker CreateEditor()
+    public class ColorEditor : TypeEditor<ColorPicker>
     {
-      return new PropertyGridEditorColorPicker();
+        #region Protected Methods
+
+        protected override ColorPicker CreateEditor()
+        {
+            return new PropertyGridEditorColorPicker();
+        }
+
+        protected override void SetControlProperties(PropertyItem propertyItem)
+        {
+            Editor.BorderThickness = new System.Windows.Thickness(0);
+            Editor.DisplayColorAndName = true;
+        }
+
+        protected override void SetValueDependencyProperty()
+        {
+            ValueProperty = ColorPicker.SelectedColorProperty;
+        }
+
+        #endregion Protected Methods
     }
 
-    protected override void SetControlProperties( PropertyItem propertyItem )
+    public class PropertyGridEditorColorPicker : ColorPicker
     {
-      Editor.BorderThickness = new System.Windows.Thickness( 0 );
-      Editor.DisplayColorAndName = true;
-    }
-    protected override void SetValueDependencyProperty()
-    {
-      ValueProperty = ColorPicker.SelectedColorProperty;
-    }
-  }
+        #region Public Constructors
 
-  public class PropertyGridEditorColorPicker : ColorPicker
-  {
-    static PropertyGridEditorColorPicker()
-    {
-      DefaultStyleKeyProperty.OverrideMetadata( typeof( PropertyGridEditorColorPicker ), new FrameworkPropertyMetadata( typeof( PropertyGridEditorColorPicker ) ) );
+        static PropertyGridEditorColorPicker()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(PropertyGridEditorColorPicker), new FrameworkPropertyMetadata(typeof(PropertyGridEditorColorPicker)));
+        }
+
+        #endregion Public Constructors
     }
-  }
 }

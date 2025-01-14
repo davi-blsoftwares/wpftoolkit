@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -17,62 +17,74 @@
 using System;
 using System.ComponentModel;
 using System.Windows;
-using Xceed.Wpf.Toolkit.Media.Animation;
 using Xceed.Wpf.Toolkit.Core;
+using Xceed.Wpf.Toolkit.Media.Animation;
 
 namespace Xceed.Wpf.Toolkit.Panels
 {
-  [TypeConverter( typeof( AnimatorConverter ) )]
-  public abstract class IterativeAnimator
-  {
-    #region Default Static Property
-
-    public static IterativeAnimator Default
+    [TypeConverter(typeof(AnimatorConverter))]
+    public abstract class IterativeAnimator
     {
-      get
-      {
-        return _default;
-      }
-    }
+        #region Private Fields
 
-    private static readonly IterativeAnimator _default = new DefaultAnimator();
+        private static readonly IterativeAnimator _default = new DefaultAnimator();
 
-    #endregion
+        #endregion Private Fields
 
-    public abstract Rect GetInitialChildPlacement(
+        #region Public Properties
+
+        public static IterativeAnimator Default
+        {
+            get
+            {
+                return _default;
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public abstract Rect GetInitialChildPlacement(
       UIElement child,
       Rect currentPlacement,
       Rect targetPlacement,
       AnimationPanel activeLayout,
       ref AnimationRate animationRate,
       out object placementArgs,
-      out bool isDone );
+      out bool isDone);
 
-    public abstract Rect GetNextChildPlacement(
-      UIElement child,
-      TimeSpan currentTime,
-      Rect currentPlacement,
-      Rect targetPlacement,
-      AnimationPanel activeLayout,
-      AnimationRate animationRate,
-      ref object placementArgs,
-      out bool isDone );
+        public abstract Rect GetNextChildPlacement(
+          UIElement child,
+          TimeSpan currentTime,
+          Rect currentPlacement,
+          Rect targetPlacement,
+          AnimationPanel activeLayout,
+          AnimationRate animationRate,
+          ref object placementArgs,
+          out bool isDone);
 
-    #region DefaultAnimator Nested Type
+        #endregion Public Methods
 
-    private sealed class DefaultAnimator : IterativeAnimator
-    {
-      public override Rect GetInitialChildPlacement( UIElement child, Rect currentPlacement, Rect targetPlacement, AnimationPanel activeLayout, ref AnimationRate animationRate, out object placementArgs, out bool isDone )
-      {
-        throw new InvalidOperationException( ErrorMessages.GetMessage( ErrorMessages.DefaultAnimatorCantAnimate ) );
-      }
+        #region Private Classes
 
-      public override Rect GetNextChildPlacement( UIElement child, TimeSpan currentTime, Rect currentPlacement, Rect targetPlacement, AnimationPanel activeLayout, AnimationRate animationRate, ref object placementArgs, out bool isDone )
-      {
-        throw new InvalidOperationException( ErrorMessages.GetMessage( ErrorMessages.DefaultAnimatorCantAnimate ) );
-      }
+        private sealed class DefaultAnimator : IterativeAnimator
+        {
+            #region Public Methods
+
+            public override Rect GetInitialChildPlacement(UIElement child, Rect currentPlacement, Rect targetPlacement, AnimationPanel activeLayout, ref AnimationRate animationRate, out object placementArgs, out bool isDone)
+            {
+                throw new InvalidOperationException(ErrorMessages.GetMessage(ErrorMessages.DefaultAnimatorCantAnimate));
+            }
+
+            public override Rect GetNextChildPlacement(UIElement child, TimeSpan currentTime, Rect currentPlacement, Rect targetPlacement, AnimationPanel activeLayout, AnimationRate animationRate, ref object placementArgs, out bool isDone)
+            {
+                throw new InvalidOperationException(ErrorMessages.GetMessage(ErrorMessages.DefaultAnimatorCantAnimate));
+            }
+
+            #endregion Public Methods
+        }
+
+        #endregion Private Classes
     }
-
-    #endregion
-  }
 }

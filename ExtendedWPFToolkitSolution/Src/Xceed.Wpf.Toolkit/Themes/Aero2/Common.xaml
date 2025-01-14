@@ -37,10 +37,9 @@
         M0,0 L8,0 8,1 0,1 z M0,0 L8,0 8,8 0,8 z
     </Geometry>
 
-
     <!-- =============================================================================== -->
     <!-- Common Styles                                                                   -->
-   <!-- Need to find a way to share these for WindowControl and StyleableWindow          -->
+    <!-- Need to find a way to share these for WindowControl and StyleableWindow          -->
     <!-- =============================================================================== -->
 
     <!-- ResizeGrip -->
@@ -49,8 +48,8 @@
 
     <!-- New Button Template without MouseOver and Pressed triggers -->
     <ControlTemplate x:Key="WindowButtonTemplate" TargetType="Button">
-        <Border Name="border" 
-                Padding="1" 
+        <Border Name="border"
+                Padding="1"
                 BorderThickness="0"
                 Background="{TemplateBinding Background}">
             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -58,9 +57,9 @@
     </ControlTemplate>
 
     <!--Default Close button style-->
-   <Style x:Key="{ComponentResourceKey 
-                  TypeInTargetAssembly={x:Type primitives:WindowControl}, 
-                  ResourceId=DefaultCloseButtonStyle}" TargetType="Button" >
+    <Style x:Key="{ComponentResourceKey
+                  TypeInTargetAssembly={x:Type primitives:WindowControl},
+                  ResourceId=DefaultCloseButtonStyle}" TargetType="Button">
         <Setter Property="Background" Value="#FFC75050" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template" Value="{StaticResource WindowButtonTemplate}" />
@@ -77,18 +76,15 @@
         </Style.Triggers>
     </Style>
 
-
-
-
     <SolidColorBrush x:Key="Window_WindowBorderBrush" Color="Gray" />
 
     <SolidColorBrush x:Key="Window_WindowBackground" Color="{x:Static media:WindowColors.ColorizationColor}" />
 
-    <SolidColorBrush x:Key="Window_Background"  Color="White"/>
+    <SolidColorBrush x:Key="Window_Background"  Color="White" />
 
     <SolidColorBrush x:Key="Window_WindowInactiveBackground" Color="#FFEBEBEB" />
 
-    <SolidColorBrush x:Key="Window_CaptionForeground" Color="Black"/>
+    <SolidColorBrush x:Key="Window_CaptionForeground" Color="Black" />
 
     <SolidColorBrush x:Key="Window_CaptionShadowBrush" Color="Transparent" />
 
@@ -119,7 +115,6 @@
     <!-- Popup Border -->
     <SolidColorBrush x:Key="PopupDarkBorderBrush" Color="#FFABADB3" />
 
-
     <!-- =============================================================================== -->
     <!-- ColorCanvas, ColorPicker                                                        -->
     <!-- =============================================================================== -->
@@ -143,5 +138,4 @@
             </DrawingGroup>
         </DrawingBrush.Drawing>
     </DrawingBrush>
-
 </ResourceDictionary>

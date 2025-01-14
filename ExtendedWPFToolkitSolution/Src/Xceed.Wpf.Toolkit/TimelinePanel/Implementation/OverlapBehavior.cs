@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,11 +16,11 @@
 
 namespace Xceed.Wpf.Toolkit
 {
-  public enum OverlapBehavior
-  {
-    Stack,
-    Stretch,
-    Hide,
-    None
-  }
+    public enum OverlapBehavior
+    {
+        Stack,
+        Stretch,
+        Hide,
+        None
+    }
 }

@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -15,38 +15,37 @@
   ***********************************************************************************/
 
 using System;
-using System.Windows;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class ShortUpDown : CommonNumericUpDown<short>
-  {
-    #region Constructors
-
-    static ShortUpDown()
+    public class ShortUpDown : CommonNumericUpDown<short>
     {
-      UpdateMetadata( typeof( ShortUpDown ), ( short )1, short.MinValue, short.MaxValue );
+        #region Public Constructors
+
+        static ShortUpDown()
+        {
+            UpdateMetadata(typeof(ShortUpDown), (short)1, short.MinValue, short.MaxValue);
+        }
+
+        public ShortUpDown()
+          : base(Int16.TryParse, Decimal.ToInt16, (v1, v2) => v1 < v2, (v1, v2) => v1 > v2)
+        {
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override short DecrementValue(short value, short increment)
+        {
+            return (short)(value - increment);
+        }
+
+        protected override short IncrementValue(short value, short increment)
+        {
+            return (short)(value + increment);
+        }
+
+        #endregion Protected Methods
     }
-
-    public ShortUpDown()
-      : base( Int16.TryParse, Decimal.ToInt16, ( v1, v2 ) => v1 < v2, ( v1, v2 ) => v1 > v2 )
-    {
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-    protected override short IncrementValue( short value, short increment )
-    {
-      return ( short )( value + increment );
-    }
-
-    protected override short DecrementValue( short value, short increment )
-    {
-      return ( short )( value - increment );
-    }
-
-    #endregion //Base Class Overrides
-  }
 }

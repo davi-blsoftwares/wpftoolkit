@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -19,35 +19,35 @@ using System.Windows;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class ByteUpDown : CommonNumericUpDown<byte>
-  {
-    #region Constructors
-
-    static ByteUpDown()
+    public class ByteUpDown : CommonNumericUpDown<byte>
     {
-      UpdateMetadata( typeof( ByteUpDown ), ( byte )1, byte.MinValue, byte.MaxValue );
-      MaxLengthProperty.OverrideMetadata( typeof(ByteUpDown), new FrameworkPropertyMetadata( 3 ) );
+        #region Public Constructors
+
+        static ByteUpDown()
+        {
+            UpdateMetadata(typeof(ByteUpDown), (byte)1, byte.MinValue, byte.MaxValue);
+            MaxLengthProperty.OverrideMetadata(typeof(ByteUpDown), new FrameworkPropertyMetadata(3));
+        }
+
+        public ByteUpDown()
+          : base(Byte.TryParse, Decimal.ToByte, (v1, v2) => v1 < v2, (v1, v2) => v1 > v2)
+        {
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override byte DecrementValue(byte value, byte increment)
+        {
+            return (byte)(value - increment);
+        }
+
+        protected override byte IncrementValue(byte value, byte increment)
+        {
+            return (byte)(value + increment);
+        }
+
+        #endregion Protected Methods
     }
-
-    public ByteUpDown()
-      : base( Byte.TryParse, Decimal.ToByte, ( v1, v2 ) => v1 < v2, ( v1, v2 ) => v1 > v2 )
-    {
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-    protected override byte IncrementValue( byte value, byte increment )
-    {
-      return ( byte )( value + increment );
-    }
-
-    protected override byte DecrementValue( byte value, byte increment )
-    {
-      return ( byte )( value - increment );
-    }
-
-    #endregion //Base Class Overrides
-  }
 }

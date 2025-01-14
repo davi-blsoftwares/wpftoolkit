@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -14,42 +14,38 @@
 
   ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Xceed.Wpf.Toolkit
 {
-  public class ItemEventArgs : RoutedEventArgs
-  {
-    #region Protected Members
-
-    private object _item;
-
-    #endregion
-
-    #region Constructor
-
-    internal ItemEventArgs( RoutedEvent routedEvent, object newItem )
-      : base( routedEvent )
+    public class ItemEventArgs : RoutedEventArgs
     {
-      _item = newItem;
+        #region Private Fields
+
+        private object _item;
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public object Item
+        {
+            get
+            {
+                return _item;
+            }
+        }
+
+        #endregion Public Properties
+
+        #region Internal Constructors
+
+        internal ItemEventArgs(RoutedEvent routedEvent, object newItem)
+              : base(routedEvent)
+        {
+            _item = newItem;
+        }
+
+        #endregion Internal Constructors
     }
-
-    #endregion
-
-    #region Property Item
-
-    public object Item
-    {
-      get
-      {
-        return _item;
-      }
-    }
-
-    #endregion
-  }
 }

@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -16,9 +16,9 @@
 
 namespace Xceed.Wpf.Toolkit.Zoombox
 {
-  public enum ZoomboxZoomOn
-  {
-    Content = 1,
-    View,
-  }
+    public enum ZoomboxZoomOn
+    {
+        Content = 1,
+        View,
+    }
 }

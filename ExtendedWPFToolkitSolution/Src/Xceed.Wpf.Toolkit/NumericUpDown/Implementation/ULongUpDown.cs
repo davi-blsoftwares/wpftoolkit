@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,35 +18,35 @@ using System;
 
 namespace Xceed.Wpf.Toolkit
 {
-  [CLSCompliantAttribute( false )]
-  public class ULongUpDown : CommonNumericUpDown<ulong>
-  {
-    #region Constructors
-
-    static ULongUpDown()
+    [CLSCompliantAttribute(false)]
+    public class ULongUpDown : CommonNumericUpDown<ulong>
     {
-      UpdateMetadata( typeof( ULongUpDown ), ( ulong )1, ulong.MinValue, ulong.MaxValue );
+        #region Public Constructors
+
+        static ULongUpDown()
+        {
+            UpdateMetadata(typeof(ULongUpDown), (ulong)1, ulong.MinValue, ulong.MaxValue);
+        }
+
+        public ULongUpDown()
+          : base(ulong.TryParse, Decimal.ToUInt64, (v1, v2) => v1 < v2, (v1, v2) => v1 > v2)
+        {
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override ulong DecrementValue(ulong value, ulong increment)
+        {
+            return (ulong)(value - increment);
+        }
+
+        protected override ulong IncrementValue(ulong value, ulong increment)
+        {
+            return (ulong)(value + increment);
+        }
+
+        #endregion Protected Methods
     }
-
-    public ULongUpDown()
-      : base( ulong.TryParse, Decimal.ToUInt64, ( v1, v2 ) => v1 < v2, ( v1, v2 ) => v1 > v2 )
-    {
-    }
-
-    #endregion //Constructors
-
-    #region Base Class Overrides
-
-    protected override ulong IncrementValue( ulong value, ulong increment )
-    {
-      return ( ulong )( value + increment );
-    }
-
-    protected override ulong DecrementValue( ulong value, ulong increment )
-    {
-      return ( ulong )( value - increment );
-    }
-
-    #endregion //Base Class Overrides
-  }
 }

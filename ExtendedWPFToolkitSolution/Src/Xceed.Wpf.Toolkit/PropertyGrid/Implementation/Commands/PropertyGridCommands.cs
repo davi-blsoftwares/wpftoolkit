@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,15 +18,24 @@ using System.Windows.Input;
 
 namespace Xceed.Wpf.Toolkit.PropertyGrid.Commands
 {
-  public class PropertyGridCommands
-  {
-    private static RoutedCommand _clearFilterCommand = new RoutedCommand();
-    public static RoutedCommand ClearFilter
+    public class PropertyGridCommands
     {
-      get
-      {
-        return _clearFilterCommand;
-      }
+        #region Private Fields
+
+        private static RoutedCommand _clearFilterCommand = new RoutedCommand();
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public static RoutedCommand ClearFilter
+        {
+            get
+            {
+                return _clearFilterCommand;
+            }
+        }
+
+        #endregion Public Properties
     }
-  }
 }

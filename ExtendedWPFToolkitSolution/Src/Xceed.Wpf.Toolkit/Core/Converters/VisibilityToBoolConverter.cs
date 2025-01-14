@@ -1,5 +1,5 @@
 ﻿/*************************************************************************************
-   
+
    Toolkit for WPF
 
    Copyright (C) 2007-2019 Xceed Software Inc.
@@ -18,72 +18,83 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using Xceed.Wpf.Toolkit.Core;
 
 namespace Xceed.Wpf.Toolkit.Core.Converters
 {
-  public class VisibilityToBoolConverter : IValueConverter
-  {
-    #region Inverted Property
-
-    public bool Inverted
+    public class VisibilityToBoolConverter : IValueConverter
     {
-      get
-      {
-        return _inverted;
-      }
-      set
-      {
-        _inverted = value;
-      }
+        #region Private Fields
+
+        private bool _inverted;
+
+        private bool _not;
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public bool Inverted
+        {
+            get
+            {
+                return _inverted;
+            }
+            set
+            {
+                _inverted = value;
+            }
+        }
+
+        //false
+
+        public bool Not
+        {
+            get
+            {
+                return _not;
+            }
+            set
+            {
+                _not = value;
+            }
+        }
+
+        #endregion Public Properties
+
+        //false
+
+        #region Public Methods
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return this.Inverted ? this.BoolToVisibility(value) : this.VisibilityToBool(value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return this.Inverted ? this.VisibilityToBool(value) : this.BoolToVisibility(value);
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
+
+        private object BoolToVisibility(object value)
+        {
+            if (!(value is bool))
+                throw new InvalidOperationException(ErrorMessages.GetMessage("SuppliedValueWasNotBool"));
+
+            return ((bool)value ^ Not) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private object VisibilityToBool(object value)
+        {
+            if (!(value is Visibility))
+                throw new InvalidOperationException(ErrorMessages.GetMessage("SuppliedValueWasNotVisibility"));
+
+            return (((Visibility)value) == Visibility.Visible) ^ Not;
+        }
+
+        #endregion Private Methods
     }
-
-    private bool _inverted; //false
-
-    #endregion
-
-    #region Not Property
-
-    public bool Not
-    {
-      get
-      {
-        return _not;
-      }
-      set
-      {
-        _not = value;
-      }
-    }
-
-    private bool _not; //false
-
-    #endregion
-
-    public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
-    {
-      return this.Inverted ? this.BoolToVisibility( value ) : this.VisibilityToBool( value );
-    }
-
-    public object ConvertBack( object value, Type targetType, object parameter, CultureInfo culture )
-    {
-      return this.Inverted ? this.VisibilityToBool( value ) : this.BoolToVisibility( value );
-    }
-
-    private object VisibilityToBool( object value )
-    {
-      if( !( value is Visibility ) )
-        throw new InvalidOperationException( ErrorMessages.GetMessage( "SuppliedValueWasNotVisibility" ) );
-
-      return ( ( ( Visibility )value ) == Visibility.Visible ) ^ Not;
-    }
-
-    private object BoolToVisibility( object value )
-    {
-      if( !( value is bool ) )
-        throw new InvalidOperationException( ErrorMessages.GetMessage( "SuppliedValueWasNotBool" ) );
-
-      return ( ( bool )value ^ Not ) ? Visibility.Visible : Visibility.Collapsed;
-    }
-  }
 }
