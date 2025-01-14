@@ -93,59 +93,6 @@ This free and open source toolkit is provided under the [Microsoft Public Licens
 </tr>
 </table>
 
-## Additional controls and features in the Plus Edition
-
-<table>
-<tr>
-<td><a href="../../wiki/Charts">Charts</a></td>
-<td><a href="../../wiki/ChildWindow-Plus">ChildWindow Plus</a></td>
-<td><a href="../../wiki/ExtendedTabControl">ExtendedTabControl</a></td>
-<td><a href="../../wiki/DataGrid">DataGrid</a></td>
-</tr>
-<tr>
-<td><a href="../../wiki/FilePicker">FilePicker</a></td>
-<td><a href="../../wiki/Material-Design-controls">21 Material Design controls</a></td>
-<td><a href="../../wiki/MessageBox-Plus">MessageBox Plus</a></td>
-<td><a href="../../wiki/MultiCalendar">MultiCalendar</a></td>
-</tr>
-<tr>
-<td><a href="../../wiki/MultiColumnComboBox">MultiColumnComboBox</a></td>
-<td><a href="../../wiki/PileFlowPanel">PileFlowPanel</a></td>
-<td><a href="../../wiki/PropertyGrid-Plus">PropertyGrid Plus</a></td>
-<td><a href="../../wiki/RadialGauge">RadialGauge</a></td>
-</tr>
-<tr>
-<td><a href="../../wiki/Rating">Rating</a></td>
-<td><a href="../../wiki/SlideShow">SlideShow</a></td>
-<td><a href="../../wiki/StyleableWindow">StyleableWindow</a></td>
-<td><a href="../../wiki/SwitchPanel-Plus">12 new SwitchPanels</a></td>
-</tr>
-<tr>
-<td><a href="../../wiki/ToggleSwitch">ToggleSwitch</a></td>
-<td><a href="../../wiki/TokenizedTextBox">TokenizedTextBox</a></td>
-<td><a href="../../wiki/Ultimate-ListBox">Ultimate ListBox</a></td>
-<td><a href="../../wiki/WindowControl-Plus">WindowControl Plus</a></td>
-</tr>
-<tr>
-<td><a href="../../wiki/Themes-Usage-Instructions">Windows 10 theme</a></td>
-<td><a href="../../wiki/Xceed-Toolkit-Plus-for-WPF#feature-comparison">2 Metro themes</a></td>
-<td><a href="../../wiki/Xceed-Toolkit-Plus-for-WPF#feature-comparison">3 Office themes</a></td>
-<td><a href="../../wiki/Xceed-Toolkit-Plus-for-WPF#feature-comparison">2+ releases ahead</a></td>
-</tr>
-</table>
-
-## Additional controls and features in the Business Suite for WPF
-
-<table>
-<tr>
-<td><a href="../../wiki/Advanced-DataGrid">Advanced DataGrid</a></td>
-<td><a href="../../wiki/Xceed-Toolkit-Plus-for-WPF#feature-comparison">10 new DataGrid editors</a></td>
-<td><a href="../../wiki/Xceed-Toolkit-Plus-for-WPF#feature-comparison">3D Views for WPF</a></td>
-<td><a href="../../wiki/Xceed-Toolkit-Plus-for-WPF#feature-comparison">More themes</a></td>
-<td><a href="../../wiki/Xceed-Toolkit-Plus-for-WPF#feature-comparison">All base WPF controls themed</a></td>
-</tr>
-</table>
-
 ## Release history
 
 * **February 7, 2019 v3.5.0 released with [26 bug fixes and improvements](../../wiki/Improvements-in-v3.5.0).**
@@ -181,12 +128,5 @@ This free and open source toolkit is provided under the [Microsoft Public Licens
 * **Feb 20, 2014, released v2.1.0 with [70 bug fixes and improvements](../../wiki/Improvements-in-v2.1.0#Community210).**
 * Feb. 12, 2014, released [Plus Edition](../../wiki/Xceed-Toolkit-Plus-for-WPF) v2.2.0 with [4 new controls and 18 bug fixes and improvements](../../wiki/Improvements-in-v2.2.0#Plus220). 
 
-## Action items
 
-* Enjoy WPF!
-* Buy [Xceed Toolkit Plus for WPF](https://xceed.com/xceed-toolkit-plus-for-wpf/)
-* Follow [@xceed](http://twitter.com/xceed) on Twitter for WPF and Toolkit news
-* Add bugs or feature requests with the Issues tab
-<br>
-<br>
 <a href="https://xceed.com/"><img src="https://user-images.githubusercontent.com/21266763/27974888-eecc663c-632d-11e7-8f3b-abf39b8fa913.png" width="278"/></a>
